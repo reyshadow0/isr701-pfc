@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+
+% Datos de la entrega
+\newcommand{\codigoactividad}{TA-PFC-E1}
+\newcommand{\nombreactividad}{Proyecto Fin de Curso, entrega 1: definición, requisitos y arquitectura base del sistema distribuido}
+\newcommand{\nombreproyecto}{Sistema de gestión de documentos de pre-sustentaciones de trabajos de titulación}
+\newcommand{\integrantes}{Benites Pérez Dariem Alberto \\ Castro Coello Mario Sebastián \\ Cedeño Intriago Jilmar Jesús \\ Pozo Castillo Steven Fernando}
+\newcommand{\repositorio}{https://github.com/reyshadow0/isr701-pfc}
+\newcommand{\fechaentrega}{22 de noviembre de 2026}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{referencias.bib}
+\usepackage[hidelinks]{hyperref}
+
+\graphicspath{{figuras/}{diagramas/}}
+
+% Permite cortar URL largas en la bibliografía (evita desbordes)
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  showstringspaces=false,
+  extendedchars=true,
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+           {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+           {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ü}{{\"u}}1 {¿}{{?`}}1 {¡}{{!`}}1
+}
+\renewcommand{\lstlistingname}{Código}
+
+\hypersetup{pdftitle={\codigoactividad: \nombreproyecto}}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  {\large\bfseries UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO\par}
+  \vspace{0.3cm}
+  {Facultad de Ciencias de la Computación\par}
+  {Carrera de Software\par}
+  \vspace{2cm}
+  {\large Aplicaciones Distribuidas (ISR-701)\par}
+  \vspace{1.2cm}
+  {\Large\bfseries \nombreproyecto\par}
+  \vspace{0.6cm}
+  {\large \codigoactividad: \nombreactividad\par}
+  \vfill
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    \textbf{Integrante} & \textbf{Rol} \\
+    \midrule
+    Benites Pérez Dariem Alberto   & \\
+    Castro Coello Mario Sebastián  & \\
+    Cedeño Intriago Jilmar Jesús   & \\
+    Pozo Castillo Steven Fernando  & \\
+    \bottomrule
+  \end{tabular}
+  \par\vspace{1cm}
+  \begin{tabular}{@{}rl@{}}
+    \textbf{Docente:}          & Gleiston Cicerón Guerrero Ulloa, PhD \\
+    \textbf{Nivel / paralelo:} & Séptimo nivel / B \\
+    \textbf{Periodo:}          & SPA 2026--2027 \\
+    \textbf{Fecha de entrega:} & \fechaentrega \\
+  \end{tabular}
+  \par\vspace{1cm}
+  {\small Repositorio: \url{\repositorio}\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\input{secciones/01-resumen-ejecutivo}
+\input{secciones/02-contexto-problema}
+\input{secciones/03-objetivos}
+\input{secciones/04-trabajos-relacionados}
+\input{secciones/05-requisitos}
+\input{secciones/06-justificacion-distribuida}
+\input{secciones/07-arquitectura-c4}
+\input{secciones/08-comunicacion}
+\input{secciones/09-cap-pacelc}
+\input{secciones/10-adr}
+\input{secciones/11-riesgos}
+\input{secciones/12-plan-proyecto}
+\input{secciones/13-esqueleto}
+\input{secciones/14-aportes}
+\input{secciones/15-declaracion-ia}
+
+\printbibliography[heading=bibintoc,title={Referencias}]
+
+\end{document}
