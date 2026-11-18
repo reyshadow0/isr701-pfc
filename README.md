@@ -9,12 +9,12 @@ y defensa).
 
 ## Integrantes y roles (equipo BCCP)
 
-| Integrante | Rol |
-|---|---|
-| Benites Pérez Dariem Alberto | |
-| Castro Coello Mario Sebastián | |
-| Cedeño Intriago Jilmar Jesús | |
-| Pozo Castillo Steven Fernando | |
+| Integrante | Rol | GitHub |
+|---|---|---|
+| Benites Pérez Dariem Alberto | Arquitecto | [@DALBEZ-ROG](https://github.com/DALBEZ-ROG) |
+| Castro Coello Mario Sebastián | Líder de Desarrollo | [@reyshadow0](https://github.com/reyshadow0) |
+| Cedeño Intriago Jilmar Jesús | Responsable de Calidad | [@jcedenoi4](https://github.com/jcedenoi4) |
+| Pozo Castillo Steven Fernando | Responsable de Documentación | [@Redsito1215](https://github.com/Redsito1215) |
 
 ## Estructura del repositorio
 
