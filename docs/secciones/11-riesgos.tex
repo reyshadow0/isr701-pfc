@@ -10,7 +10,7 @@
 
 \textbf{Mitigación.} Probar archivos por debajo, en el límite y por encima del tamaño permitido. Si la carga falla, mantener la solicitud en borrador, mostrar el error y permitir un reintento. Verificar que el sistema solo confirma el envío cuando el documento queda almacenado.
 
-\textbf{Fuente del caso.} \href{https://www.fastly.com/blog/summary-of-june-8-outage}{Resumen del incidente del 8 de junio de 2021, publicado por Fastly}.
+\textbf{Fuente del caso.} \cite{Rockwell2021FastlyOutage}.
 
 \subsection{R02. Acta sin la nota registrada}
 
@@ -22,7 +22,7 @@
 
 \textbf{Mitigación.} Consultar las notas y generar las actas siempre desde la base de datos principal. Como prueba, registrar una nota, generar el acta de inmediato y comprobar que contiene exactamente la nota guardada.
 
-\textbf{Fuente del caso.} \href{https://github.blog/news-insights/company-news/oct21-post-incident-analysis/}{Análisis del incidente del 21 de octubre, publicado por GitHub}.
+\textbf{Fuente del caso.} \cite{Warner2018GitHubIncident}.
 
 \subsection{R03. Caída de un componente compartido tras un cambio}
 
@@ -34,7 +34,7 @@
 
 \textbf{Mitigación.} Validar los cambios en un entorno de pruebas y desplegar un servicio a la vez. Documentar y probar un acceso de emergencia autorizado al servidor y a la base de datos que no dependa del componente afectado.
 
-\textbf{Fuente del caso.} \href{https://engineering.fb.com/2021/10/05/networking-traffic/outage-details/}{Detalles del incidente del 4 de octubre, publicados por el equipo de ingeniería de Facebook}.
+\textbf{Fuente del caso.} \cite{EngineeringAtMeta2021Outage}.
 
 \subsection{R04. Bloqueo de la revisión de solicitudes tras cambiar una regla}
 
@@ -46,7 +46,7 @@
 
 \textbf{Mitigación.} Guardar versiones de las reglas y probar cada cambio con solicitudes en todos los estados antes de activarlo. En un entorno de pruebas, verificar que se puede volver a la regla anterior y continuar la revisión sin perder los estados ya registrados.
 
-\textbf{Fuente del caso.} \href{https://www.fastly.com/blog/summary-of-june-8-outage}{Resumen del incidente del 8 de junio de 2021, publicado por Fastly}.
+\textbf{Fuente del caso.} \cite{Rockwell2021FastlyOutage}.
 
 \subsection{R05. Saturación de la API de pre-sustentaciones}
 
@@ -58,4 +58,4 @@
 
 \textbf{Mitigación.} Exponer únicamente el proxy inverso y restringir el acceso público directo a la API. Aplicar límites de solicitudes por IP y por usuario, incorporar comprobaciones de salud y configurar alertas de disponibilidad. En un entorno de pruebas, ejecutar una prueba de carga para comprobar que el sistema limita el exceso de solicitudes y que los usuarios autorizados aún pueden registrar notas y generar actas.
 
-\textbf{Fuente del caso.} \href{https://www.bitsight.com/blog/massive-ddos-x-dark-storm-or-cyber-fog}{Pedro Umbelino, análisis de la caída de X publicado por Bitsight, 14 de marzo de 2025}.
+\textbf{Fuente del caso.} \cite{Umbelino2025BitsightDDoS}.
