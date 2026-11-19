@@ -2,7 +2,7 @@
 
 \subsection{R01. Interrupción de la carga de documentos}
 
-\textbf{Origen.} En el caso Fastly 2021, una configuración válida activó un defecto latente. En el sistema de pre-sustentaciones, un archivo que cumple las reglas de carga podría activar un defecto del servicio e impedir el envío de la solicitud.
+\textbf{Origen.} Aporte de Jilmar Cedeño. En el caso Fastly 2021, una configuración válida activó un defecto latente. En el sistema de pre-sustentaciones, un archivo que cumple las reglas de carga podría activar un defecto del servicio e impedir el envío de la solicitud.
 
 \textbf{Probabilidad preliminar: media.} Es una estimación del PFC pendiente de validar en la entrevista. El tamaño cercano al límite es un ejemplo de entrada válida para probar la carga. La lección de Fastly es que una entrada válida puede activar un defecto latente.
 
@@ -38,7 +38,7 @@
 
 \subsection{R04. Bloqueo de la revisión de solicitudes tras cambiar una regla}
 
-\textbf{Origen.} En el incidente de Fastly de 2021, un cambio de configuración válido activó un defecto latente. En pre-sustentaciones, una actualización válida de las reglas de aprobación podría activar un fallo que impida a coordinación revisar solicitudes que ya están en trámite.
+\textbf{Origen.} Aporte de Jilmar Cedeño. En el incidente de Fastly de 2021, un cambio de configuración válido activó un defecto latente. En pre-sustentaciones, una actualización válida de las reglas de aprobación podría activar un fallo que impida a coordinación revisar solicitudes que ya están en trámite.
 
 \textbf{Probabilidad preliminar: media.} Una regla nueva puede comportarse de forma distinta según el estado de la solicitud. Esta estimación del PFC queda pendiente de validación en la entrevista.
 
