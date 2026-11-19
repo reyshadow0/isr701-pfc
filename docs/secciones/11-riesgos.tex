@@ -1,10 +1,12 @@
 \section{Análisis de riesgos}
 
+La entrevista no aportó frecuencias para recalificar las probabilidades. No se reportaron documentos perdidos ni actas firmadas con errores. El uso de correo y firmas en papel retrasa el cierre del acta y mantiene abierta la posibilidad de extravío.
+
 \subsection{R01. Interrupción de la carga de documentos}
 
 \textbf{Origen.} Aporte de Jilmar Cedeño. En el caso Fastly 2021, una configuración válida activó un defecto latente. En el Sistema de Pre-Sustentaciones, un archivo que cumple las reglas de carga podría activar un defecto del servicio e impedir el envío de la solicitud.
 
-\textbf{Probabilidad preliminar: media.} Es una estimación del PFC pendiente de validar en la entrevista. El tamaño cercano al límite es un ejemplo de entrada válida para probar la carga. La lección de Fastly es que una entrada válida puede activar un defecto latente.
+\textbf{Probabilidad preliminar: media.} La entrevista confirmó el pico de entregas y el límite por archivo. La frecuencia de fallos de carga queda por medir. El tamaño cercano al límite es un ejemplo de entrada válida para probar la carga. La lección de Fastly es que una entrada válida puede activar un defecto latente.
 
 \textbf{Impacto: alto.} Si el fallo ocurre cerca del cierre, el estudiante podría no completar la entrega dentro del plazo.
 
@@ -12,7 +14,7 @@
 
 \textbf{Rama causal de referencia.} Defecto latente activado por una entrada válida. Las pruebas de frontera detectan fallos antes del despliegue. El borrador y el reintento cortan la propagación del fallo de almacenamiento al envío de la solicitud.
 
-\textbf{Prueba.} En pruebas, cargar archivos de tamaño inferior, igual y superior al límite. Simular indisponibilidad del almacenamiento con un archivo válido y reintentar tras restablecerlo.
+\textbf{Prueba.} En pruebas, cargar archivos de tamaño inferior, igual y superior a 20 MB. Simular indisponibilidad del almacenamiento con un archivo válido y reintentar tras restablecerlo.
 
 \textbf{Resultado esperado.} Se aceptan los tamaños permitidos y se rechaza el que excede el límite. Durante la falla la solicitud sigue en borrador, y solo se confirma cuando se almacena el documento.
 
@@ -22,17 +24,17 @@
 
 \textbf{Origen.} Aporte de Mario Castro. El riesgo se basa en el incidente de GitHub del 21 de octubre de 2018. En el Sistema de Pre-Sustentaciones, una réplica atrasada podría devolver datos anteriores al último registro del tribunal.
 
-\textbf{Probabilidad estimada: media.} El riesgo aparece si se genera el acta inmediatamente después de guardar la nota y la réplica todavía no ha recibido ese cambio.
+\textbf{Probabilidad preliminar: media.} El riesgo aparece si se genera el acta inmediatamente después de guardar la nota y la réplica todavía no ha recibido ese cambio.
 
 \textbf{Impacto: alto.} El tribunal podría firmar un acta sin la nota recién registrada y tendría que corregirla y firmarla de nuevo.
 
-\textbf{Mitigación.} Consultar las notas y generar las actas siempre desde la base de datos principal.
+\textbf{Mitigación.} Consultar la nota vigente en la base de datos principal. Bloquear la generación del acta si la nota no se puede verificar.
 
 \textbf{Rama causal de referencia.} Lectura de una réplica desactualizada. Leer la nota desde la base principal para generar el acta evita que el retraso de la réplica se propague al documento.
 
-\textbf{Prueba.} En pruebas, mantener retrasada la réplica, guardar una nota nueva en la base principal y generar el acta de inmediato.
+\textbf{Prueba.} En pruebas, mantener retrasada la réplica, guardar una nota nueva en la base principal y generar el acta de inmediato. Repetir con la base principal indisponible.
 
-\textbf{Resultado esperado.} El acta contiene exactamente la nueva nota guardada en la base principal.
+\textbf{Resultado esperado.} El acta contiene exactamente la nota vigente. Si no se puede verificar, el sistema bloquea la generación. La entrevista prioriza esta exactitud y no reporta actas firmadas con errores.
 
 \textbf{Fuente del caso.} \cite{Warner2018GitHubIncident}.
 
@@ -43,9 +45,9 @@
 
 \textbf{Factor que prolonga la caída.} En Meta, la interrupción dificultó el acceso remoto para recuperar el servicio. En el Sistema de Pre-Sustentaciones, depender del componente caído para acceder a la administración retrasaría el diagnóstico y la reversión.
 
-\textbf{Probabilidad estimada: media.} Un cambio de configuración o de despliegue en un componente compartido puede afectar a varios servicios a la vez.
+\textbf{Probabilidad preliminar: media.} Un cambio de configuración o de despliegue en un componente compartido puede afectar a varios servicios a la vez.
 
-\textbf{Impacto: alto.} Los estudiantes no podrían subir documentos y el tribunal no podría registrar evaluaciones, incluso durante la semana de entregas.
+\textbf{Impacto: alto.} Los estudiantes no podrían subir documentos y el tribunal no podría registrar evaluaciones, durante la semana de predefensas. La sesión presencial puede continuar y las notas se registran después.
 
 \textbf{Mitigación.} Validar los cambios en un entorno de pruebas y desplegar un servicio a la vez. Documentar y probar un acceso de emergencia autorizado al servidor y a la base de datos que no dependa del componente afectado.
 
@@ -53,7 +55,7 @@
 
 \textbf{Prueba.} En pruebas, simular la caída del punto de entrada compartido e intentar revertir el cambio por la ruta administrativa independiente.
 
-\textbf{Resultado esperado.} La ruta autorizada sigue disponible, permite revertir el cambio y se recuperan la carga de documentos y el registro de notas.
+\textbf{Resultado esperado.} La ruta autorizada sigue disponible, permite revertir el cambio y se recuperan la carga de documentos y el registro de notas dentro de los 60 minutos consecutivos definidos para la semana de predefensas (RNF-02).
 
 \textbf{Fuente del caso.} \cite{EngineeringAtMeta2021Outage}.
 
@@ -61,7 +63,7 @@
 
 \textbf{Origen.} Aporte de Jilmar Cedeño. En el incidente de Fastly de 2021, un cambio de configuración válido activó un defecto latente. En el Sistema de Pre-Sustentaciones, una actualización válida de las reglas de aprobación podría activar un fallo que impida a coordinación revisar solicitudes que ya están en trámite.
 
-\textbf{Probabilidad preliminar: media.} Una regla nueva puede comportarse de forma distinta según el estado de la solicitud. Esta estimación del PFC queda pendiente de validación en la entrevista.
+\textbf{Probabilidad preliminar: media.} Una regla nueva puede comportarse de forma distinta según el estado de la solicitud. La entrevista confirmó un cambio de tutor sin registro. La frecuencia de fallos por cambios de reglas queda por medir. El cambio de tutor es un hallazgo de la entrevista para las historias de usuario.
 
 \textbf{Impacto: alto.} Coordinación podría quedar sin acceso a la revisión de solicitudes pendientes y retrasar su aprobación.
 
@@ -87,8 +89,8 @@
 
 \textbf{Rama causal de referencia.} Exposición directa del origen y saturación por exceso de solicitudes. El proxy y la restricción de acceso cortan la ruta directa a la API. Los límites reducen la saturación. Las comprobaciones de salud y las alertas acortan el tiempo de detección.
 
-\textbf{Prueba.} En un entorno controlado, comprobar el acceso al origen y simular una carga superior al límite configurado a través del proxy.
+\textbf{Prueba.} En un entorno controlado, comprobar el acceso al origen y simular, a través del proxy, el pico previsto y una carga por encima del límite configurado. La entrevista estima pocas decenas de usuarios simultáneos. El número exacto queda por confirmar.
 
-\textbf{Resultado esperado.} Se rechaza el acceso público directo y se limitan las solicitudes excedentes. Los usuarios autorizados dentro de su cuota aún pueden registrar notas y generar actas.
+\textbf{Resultado esperado.} Se rechaza el acceso público directo y se limitan las solicitudes excedentes. Los usuarios autorizados dentro de su cuota aún pueden registrar notas y generar actas. Si las funciones críticas se interrumpen, deben recuperarse en un máximo de 60 minutos consecutivos durante la semana de predefensas (RNF-02).
 
 \textbf{Fuente del caso.} \cite{Umbelino2025BitsightDDoS}.

@@ -1,1 +1,52 @@
 \section{Requisitos}
+
+\subsection{Requisitos no funcionales}
+
+Las características de calidad corresponden a ISO/IEC 25010:2023.
+
+\begin{description}
+    \item[RNF-01. Capacidad documental.] Dimensionar el sistema para 10 a
+    12 estudiantes por periodo y hasta tres PDF por estudiante, con un límite
+    de 20 MB por archivo. El máximo previsto de archivos cargados es de
+    720 MB por periodo (12 estudiantes por 3 archivos por 20 MB), a lo que
+    se suma el espacio de las actas generadas. La nómina del segundo periodo
+    2024--2025 tuvo 12 estudiantes inscritos y 10 presentaron. Verificar la
+    capacidad con ese volumen y probar el límite de tamaño por archivo.
+    \textbf{Característica.} Eficiencia de desempeño (capacidad).
+
+    \item[RNF-02. Disponibilidad.] Alcanzar una disponibilidad mensual de al
+    menos 99,5\% fuera de la semana de predefensas. Durante esa semana,
+    recuperar las funciones críticas en un máximo de 60 minutos consecutivos
+    por interrupción. Verificar ambos criterios con registros de monitoreo.
+    Si el sistema no está disponible, el tribunal puede continuar la
+    predefensa y registrar las calificaciones después.
+    \textbf{Característica.} Fiabilidad (disponibilidad y recuperabilidad).
+
+    \item[RNF-03. Acceso desde computadora y celular.] Permitir la carga de
+    documentos, la revisión de informes y la consulta del estado desde
+    ambos tipos de dispositivo, según el rol. Verificar esas operaciones
+    en 2 entornos: un navegador de escritorio y uno móvil.
+    \textbf{Característica.} Flexibilidad (adaptabilidad).
+
+    \item[RNF-04. Conservación documental.] Conservar permanentemente las
+    actas y las notas del expediente académico. Aplicar a los demás
+    documentos el plazo de la tabla institucional de conservación
+    documental, pendiente de confirmar. El proceso automático de limpieza
+    debe eliminar 0 actas y 0 registros de notas. Verificarlo ejecutando
+    ese proceso sobre expedientes de prueba.
+    \textbf{Característica.} Seguridad (integridad).
+
+    \item[RNF-05. Concurrencia.] Soportar 30 usuarios simultáneos en una
+    prueba de carga que combine entrega de archivos, revisión de informes y
+    consulta del estado, con 0 errores atribuibles a saturación durante la
+    prueba. Los 30 usuarios son una meta preliminar de diseño basada en la
+    estimación de pocas decenas de usuarios en la semana 19.
+    \textbf{Característica.} Eficiencia de desempeño (capacidad).
+
+    \item[RNF-06. Confidencialidad.] Permitir 0 accesos no autorizados a
+    informes y calificaciones. Verificar, con al menos 2 expedientes y
+    2 tribunales de prueba, que un estudiante no pueda acceder a un
+    expediente ajeno y que un tribunal no pueda acceder a expedientes
+    asignados al otro tribunal.
+    \textbf{Característica.} Seguridad (confidencialidad).
+\end{description}

@@ -4,17 +4,19 @@
 
 Desarrollar un sistema distribuido para gestionar los documentos de las
 pre-sustentaciones de trabajos de titulación en la Universidad Técnica Estatal
-de Quevedo, desde la entrega de la solicitud hasta la generación del acta.
+de Quevedo, desde la entrega de la solicitud hasta la generación del acta
+de predefensa y la consolidación de la nota final.
 
 \textbf{Indicador.} Porcentaje de casos de prueba de extremo a extremo que
 completan el flujo previsto, desde la entrega de documentos hasta la generación
-del acta con la calificación registrada. \textbf{Meta.} Al menos el 85\%.
+del acta de predefensa y la consolidación de la nota final. \textbf{Meta.} Al menos el 85\%.
 
 \subsection{Objetivos específicos}
 
 \begin{enumerate}
-    \item Implementar el registro de solicitudes y la carga de los documentos
-    requeridos para que el estudiante pueda presentar su solicitud.
+    \item Implementar la entrega del informe de predefensa, el reporte de
+    coincidencias de URKUND y el informe corregido cuando haya observaciones.
+    La entrega del anteproyecto corresponde a una etapa previa.
 
     \textbf{Indicador.} Porcentaje de casos de prueba en los que el sistema
     acepta solicitudes con documentos válidos y detecta los documentos
@@ -28,16 +30,21 @@ del acta con la calificación registrada. \textbf{Meta.} Al menos el 85\%.
     estado y las observaciones consultadas por el estudiante coinciden con lo
     registrado por coordinación. \textbf{Meta.} Al menos el 90\%.
 
-    \item Permitir que el tribunal registre la calificación de cada
-    pre-sustentación y la vincule con la solicitud correspondiente.
+    \item Registrar la calificación del tribunal según su rúbrica y
+    consolidar la nota final con el 40\% del tribunal y el 60\% del docente
+    de Desarrollo de Titulación II.
+    En el proceso actual, el docente registra la nota final en el SGA.
 
     \textbf{Indicador.} Porcentaje de casos de prueba en los que la
-    calificación guardada coincide con la ingresada por el tribunal y queda
-    asociada a la solicitud correcta. \textbf{Meta.} Al menos el 95\%.
+    calificación del tribunal queda vinculada a la solicitud correcta y
+    la nota final coincide con el cálculo esperado. \textbf{Meta.} Al menos el 95\%.
 
-    \item Generar el acta de pre-sustentación a partir de los datos de la
-    solicitud y la calificación registrada.
+    \item Generar el acta de predefensa con las observaciones, la calificación
+    vigente del tribunal y los espacios de firma del presidente y los dos
+    miembros. Bloquear la generación si la calificación vigente no se
+    puede verificar.
 
-    \textbf{Indicador.} Porcentaje de actas de prueba cuyos datos y
-    calificación coinciden con los registros de la solicitud correspondiente. \textbf{Meta.} Al menos el 95\%.
+    \textbf{Indicador.} Porcentaje de casos de prueba que generan el acta
+    correcta cuando la nota es verificable o bloquean la generación cuando
+    no se puede verificar. \textbf{Meta.} Al menos el 95\%.
 \end{enumerate}
