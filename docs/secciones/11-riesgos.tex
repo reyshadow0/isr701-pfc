@@ -2,7 +2,7 @@
 
 \subsection{R01. Interrupción de la carga de documentos}
 
-\textbf{Origen.} Aporte de Jilmar Cedeño. En el caso Fastly 2021, una configuración válida activó un defecto latente. En el sistema de pre-sustentaciones, un archivo que cumple las reglas de carga podría activar un defecto del servicio e impedir el envío de la solicitud.
+\textbf{Origen.} Aporte de Jilmar Cedeño. En el caso Fastly 2021, una configuración válida activó un defecto latente. En el Sistema de Pre-Sustentaciones, un archivo que cumple las reglas de carga podría activar un defecto del servicio e impedir el envío de la solicitud.
 
 \textbf{Probabilidad preliminar: media.} Es una estimación del PFC pendiente de validar en la entrevista. El tamaño cercano al límite es un ejemplo de entrada válida para probar la carga. La lección de Fastly es que una entrada válida puede activar un defecto latente.
 
@@ -10,23 +10,38 @@
 
 \textbf{Mitigación.} Probar archivos por debajo, en el límite y por encima del tamaño permitido. Si la carga falla, mantener la solicitud en borrador, mostrar el error y permitir un reintento. Verificar que el sistema solo confirma el envío cuando el documento queda almacenado.
 
+\textbf{Rama causal de referencia.} Defecto latente activado por una entrada válida. Las pruebas de frontera detectan fallos antes del despliegue. El borrador y el reintento cortan la propagación del fallo de almacenamiento al envío de la solicitud.
+
+\textbf{Prueba.} En pruebas, cargar archivos de tamaño inferior, igual y superior al límite. Simular indisponibilidad del almacenamiento con un archivo válido y reintentar tras restablecerlo.
+
+\textbf{Resultado esperado.} Se aceptan los tamaños permitidos y se rechaza el que excede el límite. Durante la falla la solicitud sigue en borrador, y solo se confirma cuando se almacena el documento.
+
 \textbf{Fuente del caso.} \cite{Rockwell2021FastlyOutage}.
 
 \subsection{R02. Acta sin la nota registrada}
 
-\textbf{Origen.} Aporte de Mario Castro. El riesgo se basa en el incidente de GitHub del 21 de octubre de 2018. En el sistema de pre-sustentaciones, una réplica atrasada podría devolver datos anteriores al último registro del tribunal.
+\textbf{Origen.} Aporte de Mario Castro. El riesgo se basa en el incidente de GitHub del 21 de octubre de 2018. En el Sistema de Pre-Sustentaciones, una réplica atrasada podría devolver datos anteriores al último registro del tribunal.
 
 \textbf{Probabilidad estimada: media.} El riesgo aparece si se genera el acta inmediatamente después de guardar la nota y la réplica todavía no ha recibido ese cambio.
 
 \textbf{Impacto: alto.} El tribunal podría firmar un acta sin la nota recién registrada y tendría que corregirla y firmarla de nuevo.
 
-\textbf{Mitigación.} Consultar las notas y generar las actas siempre desde la base de datos principal. Como prueba, registrar una nota, generar el acta de inmediato y comprobar que contiene exactamente la nota guardada.
+\textbf{Mitigación.} Consultar las notas y generar las actas siempre desde la base de datos principal.
+
+\textbf{Rama causal de referencia.} Lectura de una réplica desactualizada. Leer la nota desde la base principal para generar el acta evita que el retraso de la réplica se propague al documento.
+
+\textbf{Prueba.} En pruebas, mantener retrasada la réplica, guardar una nota nueva en la base principal y generar el acta de inmediato.
+
+\textbf{Resultado esperado.} El acta contiene exactamente la nueva nota guardada en la base principal.
 
 \textbf{Fuente del caso.} \cite{Warner2018GitHubIncident}.
 
 \subsection{R03. Caída de un componente compartido tras un cambio}
 
-\textbf{Origen.} Aporte de Dariem Benites. El riesgo se basa en la caída de Facebook, Instagram y WhatsApp del 4 de octubre de 2021. Un comando de mantenimiento desconectó la red troncal y la caída dificultó el acceso remoto para recuperar el servicio. En pre-sustentaciones, un cambio en el punto de entrada o en el inicio de sesión podría dejar fuera de servicio las funciones que dependen de ese componente. Si el acceso de administración depende del mismo componente, la recuperación también se retrasaría.
+\textbf{Origen.} Aporte de Dariem Benites. El riesgo se basa en la caída de Facebook, Instagram y WhatsApp del 4 de octubre de 2021.
+\textbf{Causa de la caída.} En Meta, un comando de mantenimiento desconectó la red troncal. En el Sistema de Pre-Sustentaciones, un cambio defectuoso en el punto de entrada o en el inicio de sesión podría interrumpir varias funciones.
+
+\textbf{Factor que prolonga la caída.} En Meta, la interrupción dificultó el acceso remoto para recuperar el servicio. En el Sistema de Pre-Sustentaciones, depender del componente caído para acceder a la administración retrasaría el diagnóstico y la reversión.
 
 \textbf{Probabilidad estimada: media.} Un cambio de configuración o de despliegue en un componente compartido puede afectar a varios servicios a la vez.
 
@@ -34,28 +49,46 @@
 
 \textbf{Mitigación.} Validar los cambios en un entorno de pruebas y desplegar un servicio a la vez. Documentar y probar un acceso de emergencia autorizado al servidor y a la base de datos que no dependa del componente afectado.
 
+\textbf{Rama causal de referencia.} Cambio de mantenimiento que interrumpe un componente compartido. Validar y desplegar por etapas reduce esa posibilidad. La ruta de emergencia independiente corta la dependencia operativa que retrasa la recuperación.
+
+\textbf{Prueba.} En pruebas, simular la caída del punto de entrada compartido e intentar revertir el cambio por la ruta administrativa independiente.
+
+\textbf{Resultado esperado.} La ruta autorizada sigue disponible, permite revertir el cambio y se recuperan la carga de documentos y el registro de notas.
+
 \textbf{Fuente del caso.} \cite{EngineeringAtMeta2021Outage}.
 
 \subsection{R04. Bloqueo de la revisión de solicitudes tras cambiar una regla}
 
-\textbf{Origen.} Aporte de Jilmar Cedeño. En el incidente de Fastly de 2021, un cambio de configuración válido activó un defecto latente. En pre-sustentaciones, una actualización válida de las reglas de aprobación podría activar un fallo que impida a coordinación revisar solicitudes que ya están en trámite.
+\textbf{Origen.} Aporte de Jilmar Cedeño. En el incidente de Fastly de 2021, un cambio de configuración válido activó un defecto latente. En el Sistema de Pre-Sustentaciones, una actualización válida de las reglas de aprobación podría activar un fallo que impida a coordinación revisar solicitudes que ya están en trámite.
 
 \textbf{Probabilidad preliminar: media.} Una regla nueva puede comportarse de forma distinta según el estado de la solicitud. Esta estimación del PFC queda pendiente de validación en la entrevista.
 
 \textbf{Impacto: alto.} Coordinación podría quedar sin acceso a la revisión de solicitudes pendientes y retrasar su aprobación.
 
-\textbf{Mitigación.} Guardar versiones de las reglas y probar cada cambio con solicitudes en todos los estados antes de activarlo. En un entorno de pruebas, verificar que se puede volver a la regla anterior y continuar la revisión sin perder los estados ya registrados.
+\textbf{Mitigación.} Guardar versiones de las reglas y probar cada cambio con solicitudes en todos los estados antes de activarlo.
+
+\textbf{Rama causal de referencia.} Configuración válida que activa un defecto latente. Las pruebas por estado detectan la incompatibilidad antes de activar la regla. El versionado y la reversión reducen la duración del bloqueo.
+
+\textbf{Prueba.} En pruebas, evaluar la regla nueva con solicitudes en todos los estados, simular una regla defectuosa y volver a la versión anterior.
+
+\textbf{Resultado esperado.} La revisión vuelve a funcionar tras la reversión y se conservan los estados registrados.
 
 \textbf{Fuente del caso.} \cite{Rockwell2021FastlyOutage}.
 
 \subsection{R05. Saturación de la API de pre-sustentaciones}
 
-\textbf{Origen.} Aporte de Steven Pozo. El riesgo se basa en la caída de X del 10 de marzo de 2025. El análisis de Bitsight identificó indicios de un ataque DDoS y señaló que algunos servidores de origen estaban expuestos directamente a Internet. En pre-sustentaciones, la exposición directa de la API o un volumen excesivo de solicitudes podría saturar el servicio.
+\textbf{Origen.} Aporte de Steven Pozo. El riesgo se basa en la caída de X del 10 de marzo de 2025. El análisis de Bitsight identificó indicios de un ataque DDoS y señaló que algunos servidores de origen estaban expuestos directamente a Internet. En el Sistema de Pre-Sustentaciones, la exposición directa de la API o un volumen excesivo de solicitudes podría saturar el servicio.
 
 \textbf{Probabilidad preliminar: media.} La estimación depende de la exposición de la API y de la cantidad de solicitudes que reciba durante los períodos de mayor uso.
 
 \textbf{Impacto: alto.} Durante una pre-sustentación, estudiantes, docentes y miembros del tribunal podrían perder acceso al sistema. El tribunal podría quedar impedido de registrar notas o generar actas.
 
-\textbf{Mitigación.} Exponer únicamente el proxy inverso y restringir el acceso público directo a la API. Aplicar límites de solicitudes por IP y por usuario, incorporar comprobaciones de salud y configurar alertas de disponibilidad. En un entorno de pruebas, ejecutar una prueba de carga para comprobar que el sistema limita el exceso de solicitudes y que los usuarios autorizados aún pueden registrar notas y generar actas.
+\textbf{Mitigación.} Exponer únicamente el proxy inverso y restringir el acceso público directo a la API. Aplicar límites de solicitudes por IP y por usuario, incorporar comprobaciones de salud y configurar alertas de disponibilidad.
+
+\textbf{Rama causal de referencia.} Exposición directa del origen y saturación por exceso de solicitudes. El proxy y la restricción de acceso cortan la ruta directa a la API. Los límites reducen la saturación. Las comprobaciones de salud y las alertas acortan el tiempo de detección.
+
+\textbf{Prueba.} En un entorno controlado, comprobar el acceso al origen y simular una carga superior al límite configurado a través del proxy.
+
+\textbf{Resultado esperado.} Se rechaza el acceso público directo y se limitan las solicitudes excedentes. Los usuarios autorizados dentro de su cuota aún pueden registrar notas y generar actas.
 
 \textbf{Fuente del caso.} \cite{Umbelino2025BitsightDDoS}.
