@@ -11,3 +11,15 @@
 \textbf{Mitigación.} Probar archivos por debajo, en el límite y por encima del tamaño permitido. Si la carga falla, mantener la solicitud en borrador, mostrar el error y permitir un reintento. Verificar que el sistema solo confirma el envío cuando el documento queda almacenado.
 
 \textbf{Fuente del caso.} \href{https://www.fastly.com/blog/summary-of-june-8-outage}{Resumen del incidente del 8 de junio de 2021, publicado por Fastly}.
+
+\subsection{R02. Acta sin la nota registrada}
+
+\textbf{Origen.} Aporte de Mario, basado en el incidente de GitHub del 21 de octubre de 2018. En el sistema de pre-sustentaciones, una réplica atrasada podría devolver datos anteriores al último registro del tribunal.
+
+\textbf{Probabilidad estimada: media.} El riesgo aparece si se genera el acta inmediatamente después de guardar la nota y la réplica todavía no ha recibido ese cambio.
+
+\textbf{Impacto: alto.} El tribunal podría firmar un acta sin la nota recién registrada y tendría que corregirla y firmarla de nuevo.
+
+\textbf{Mitigación.} Consultar las notas y generar las actas siempre desde la base de datos principal. Como prueba, registrar una nota, generar el acta de inmediato y comprobar que contiene exactamente la nota guardada.
+
+\textbf{Fuente del caso.} \href{https://github.blog/news-insights/company-news/oct21-post-incident-analysis/}{Análisis del incidente del 21 de octubre, publicado por GitHub}.
