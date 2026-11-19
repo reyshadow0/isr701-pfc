@@ -4,6 +4,8 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 
 \subsection{R01. Interrupción de la carga de documentos}
 
+\textbf{Modelo de fallo.} Omisión. El servicio no completa el almacenamiento ni confirma una solicitud válida.
+
 \textbf{Origen.} Aporte de Jilmar Cedeño. En el caso Fastly 2021, una configuración válida activó un defecto latente. En el Sistema de Pre-Sustentaciones, un archivo que cumple las reglas de carga podría activar un defecto del servicio e impedir el envío de la solicitud.
 
 \textbf{Probabilidad preliminar: media.} La entrevista confirmó el pico de entregas y el límite por archivo. La frecuencia de fallos de carga queda por medir. El tamaño cercano al límite es un ejemplo de entrada válida para probar la carga. La lección de Fastly es que una entrada válida puede activar un defecto latente.
@@ -22,6 +24,8 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 
 \subsection{R02. Acta sin la nota registrada}
 
+\textbf{Modelo de fallo.} Respuesta incorrecta. El acta muestra una nota anterior o incompleta en lugar de la vigente.
+
 \textbf{Origen.} Aporte de Mario Castro. El riesgo se basa en el incidente de GitHub del 21 de octubre de 2018. En el Sistema de Pre-Sustentaciones, una réplica atrasada podría devolver datos anteriores al último registro del tribunal.
 
 \textbf{Probabilidad preliminar: media.} El riesgo aparece si se genera el acta inmediatamente después de guardar la nota y la réplica todavía no ha recibido ese cambio.
@@ -39,6 +43,8 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 \textbf{Fuente del caso.} \cite{Warner2018GitHubIncident}.
 
 \subsection{R03. Caída de un componente compartido tras un cambio}
+
+\textbf{Modelo de fallo.} Caída. El componente compartido deja de prestar servicio tras el cambio.
 
 \textbf{Origen.} Aporte de Dariem Benites. El riesgo se basa en la caída de Facebook, Instagram y WhatsApp del 4 de octubre de 2021.
 \textbf{Causa de la caída.} En Meta, un comando de mantenimiento desconectó la red troncal. En el Sistema de Pre-Sustentaciones, un cambio defectuoso en el punto de entrada o en el inicio de sesión podría interrumpir varias funciones.
@@ -61,6 +67,8 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 
 \subsection{R04. Bloqueo de la revisión de solicitudes tras cambiar una regla}
 
+\textbf{Modelo de fallo.} Respuesta incorrecta. La regla nueva rechaza una revisión que debería permitir para una solicitud en trámite.
+
 \textbf{Origen.} Aporte de Jilmar Cedeño. En el incidente de Fastly de 2021, un cambio de configuración válido activó un defecto latente. En el Sistema de Pre-Sustentaciones, una actualización válida de las reglas de aprobación podría activar un fallo que impida a coordinación revisar solicitudes que ya están en trámite.
 
 \textbf{Probabilidad preliminar: media.} Una regla nueva puede comportarse de forma distinta según el estado de la solicitud. La entrevista confirmó un cambio de tutor sin registro. La frecuencia de fallos por cambios de reglas queda por medir. El cambio de tutor es un hallazgo de la entrevista para las historias de usuario.
@@ -78,6 +86,8 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 \textbf{Fuente del caso.} \cite{Rockwell2021FastlyOutage}.
 
 \subsection{R05. Saturación de la API de pre-sustentaciones}
+
+\textbf{Modelo de fallo.} Temporización. Bajo saturación, la API no responde dentro del tiempo esperado.
 
 \textbf{Origen.} Aporte de Steven Pozo. El riesgo se basa en la caída de X del 10 de marzo de 2025. El análisis de Bitsight identificó indicios de un ataque DDoS y señaló que algunos servidores de origen estaban expuestos directamente a Internet. En el Sistema de Pre-Sustentaciones, la exposición directa de la API o un volumen excesivo de solicitudes podría saturar el servicio.
 
