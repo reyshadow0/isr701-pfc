@@ -1,1 +1,11 @@
 \section{Análisis de riesgos}
+
+\subsection{R01. Interrupción de la carga de documentos}
+
+\textbf{Origen.} En el caso Fastly 2021, estudiado en el FORM-AC-01, una configuración válida activó un defecto latente. En el sistema de pre-sustentaciones, un archivo que cumple las reglas de carga podría activar un defecto del servicio e impedir el envío de la solicitud.
+
+\textbf{Probabilidad estimada: media.} El riesgo puede aparecer al procesar archivos con tamaños cercanos al límite permitido.
+
+\textbf{Impacto: alto.} Si el fallo ocurre cerca del cierre, el estudiante podría no completar la entrega dentro del plazo.
+
+\textbf{Mitigación.} Probar archivos por debajo, en el límite y por encima del tamaño permitido. Si la carga falla, mantener la solicitud en borrador, mostrar el error y permitir un reintento. Verificar que el sistema solo confirma el envío cuando el documento queda almacenado.
