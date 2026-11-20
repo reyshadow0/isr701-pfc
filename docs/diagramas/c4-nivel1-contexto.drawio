@@ -1,43 +1,61 @@
 <mxfile>
   <diagram id="c4-nivel1-contexto" name="C4 nivel 1: contexto">
-    <mxGraphModel dx="1200" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1200" pageHeight="760" background="#FFFFFF" math="0" shadow="0">
+    <mxGraphModel dx="1600" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="800" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="titulo" value="C4 nivel 1: diagrama de contexto" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#1F2933;" vertex="1" parent="1">
           <mxGeometry x="20" y="10" width="700" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="tutor" value="&lt;b style=&quot;font-size:15px&quot;&gt;Docente tutor&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Persona]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Acompaña al estudiante y revisa su documento" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="220" y="80" width="230" height="130" as="geometry" />
+        <mxCell id="estudiante" value="&lt;b style=&quot;font-size:15px&quot;&gt;Estudiante&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Persona]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Entrega su informe y el reporte de URKUND, y sigue su trámite" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="330" y="70" width="230" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="tribunal" value="&lt;b style=&quot;font-size:15px&quot;&gt;Docente del tribunal&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Persona]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Revisa el documento y registra la evaluación" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="730" y="80" width="230" height="130" as="geometry" />
+        <mxCell id="tribunal" value="&lt;b style=&quot;font-size:15px&quot;&gt;Tribunal&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Persona]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Presidente y dos miembros que califican la predefensa" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="70" width="230" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="estudiante" value="&lt;b style=&quot;font-size:15px&quot;&gt;Estudiante&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Persona]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Sube su documento y sigue su trámite" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="20" y="325" width="230" height="130" as="geometry" />
+        <mxCell id="coordinador" value="&lt;b style=&quot;font-size:15px&quot;&gt;Coordinador de carrera&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Persona]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Arma el cronograma y da seguimiento a las solicitudes" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="970" y="70" width="230" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="coordinacion" value="&lt;b style=&quot;font-size:15px&quot;&gt;Coordinación de titulación&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Persona]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Programa las fechas, asigna el tribunal y emite las actas" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="930" y="325" width="230" height="130" as="geometry" />
+        <mxCell id="director" value="&lt;b style=&quot;font-size:15px&quot;&gt;Director o tutor&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Persona]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Asesora al estudiante y revisa su informe" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="20" y="345" width="230" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="sistema" value="&lt;b style=&quot;font-size:16px&quot;&gt;Sistema de gestión de&lt;br&gt;pre-sustentaciones&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Sistema de software]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Recibe los documentos de titulación, organiza las pre-sustentaciones y guarda las evaluaciones" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#FFFFFF;fontSize=13;spacing=10;" vertex="1" parent="1">
-          <mxGeometry x="430" y="310" width="320" height="160" as="geometry" />
+        <mxCell id="titulacion" value="&lt;b style=&quot;font-size:15px&quot;&gt;Docente de Titulación II&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Persona]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Pone el 60 % de la nota y consolida la nota final" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="345" width="230" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="correo" value="&lt;b style=&quot;font-size:15px&quot;&gt;Servicio de correo&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Sistema externo]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Entrega las notificaciones a estudiantes y docentes" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="470" y="610" width="240" height="120" as="geometry" />
+        <mxCell id="sistema" value="&lt;b style=&quot;font-size:16px&quot;&gt;Sistema de gestión de&lt;br&gt;pre-sustentaciones&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Sistema de software]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Reúne los documentos, el cronograma, las calificaciones y el acta de cada predefensa" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#1168BD;strokeColor=#0B4884;fontColor=#FFFFFF;fontSize=13;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="605" y="330" width="320" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="r-estudiante" value="Sube su documento y&lt;br&gt;consulta su trámite&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="estudiante" target="sistema">
+        <mxCell id="urkund" value="&lt;b style=&quot;font-size:15px&quot;&gt;URKUND&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Sistema externo]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Calcula el porcentaje de coincidencia del informe" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="20" y="620" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="correo" value="&lt;b style=&quot;font-size:15px&quot;&gt;Servicio de correo&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Sistema externo]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Entrega los avisos a estudiantes y docentes" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="645" y="620" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="sga" value="&lt;b style=&quot;font-size:15px&quot;&gt;SGA de la UTEQ&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;[Sistema externo]&lt;/span&gt;&lt;br&gt;&lt;br&gt;Guarda la nota final del estudiante" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#999999;strokeColor=#6B6B6B;fontColor=#FFFFFF;fontSize=13;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="620" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="r-estudiante" value="Sube su informe y el&lt;br&gt;reporte de URKUND&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.2;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="estudiante" target="sistema">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="r-tutor" value="Revisa el documento&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tutor" target="sistema">
+        <mxCell id="r-tribunal" value="Registra sus&lt;br&gt;calificaciones&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tribunal" target="sistema">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="r-tribunal" value="Registra la evaluación&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tribunal" target="sistema">
+        <mxCell id="r-coordinador" value="Arma el&lt;br&gt;cronograma&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="coordinador" target="sistema">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="r-coordinacion" value="Programa fechas y&lt;br&gt;asigna el tribunal&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="coordinacion" target="sistema">
+        <mxCell id="r-director" value="Sube sus informes&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="director" target="sistema">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="r-correo" value="Envía notificaciones&lt;br&gt;[SMTP]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sistema" target="correo">
+        <mxCell id="r-titulacion" value="Consolida la nota final&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="titulacion" target="sistema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r-urkund" value="Revisa el porcentaje&lt;br&gt;de coincidencia&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="director" target="urkund">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r-sga" value="Registra la&lt;br&gt;nota final&lt;br&gt;[HTTPS]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="titulacion" target="sga">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r-correo" value="Envía los avisos&lt;br&gt;[SMTP]" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;dashed=1;strokeColor=#555555;strokeWidth=1.5;fontSize=14;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="sistema" target="correo">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
