@@ -6,7 +6,7 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 
 \textbf{Modelo de fallo.} Omisión. El servicio no completa el almacenamiento ni confirma una solicitud válida.
 
-\textbf{Origen.} Aporte de Jilmar Cedeño. En el caso Fastly 2021, una configuración válida activó un defecto latente. En el Sistema de Pre-Sustentaciones, un archivo que cumple las reglas de carga podría activar un defecto del servicio e impedir el envío de la solicitud.
+\textbf{Origen.} Aporte de Jilmar Cedeño. En el caso Fastly 2021, una configuración válida activó un defecto latente. En el Sistema de gestión de pre-sustentaciones, un archivo que cumple las reglas de carga podría activar un defecto del servicio e impedir el envío de la solicitud.
 
 \textbf{Probabilidad preliminar: media.} La entrevista confirmó el pico de entregas y el límite por archivo. La frecuencia de fallos de carga queda por medir. El tamaño cercano al límite es un ejemplo de entrada válida para probar la carga. La lección de Fastly es que una entrada válida puede activar un defecto latente.
 
@@ -22,13 +22,13 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 
 \textbf{Fuente del caso.} \cite{Rockwell2021FastlyOutage}.
 
-\subsection{R02. Acta sin la nota registrada}
+\subsection{R02. Acta con una nota faltante o desactualizada}
 
 \textbf{Modelo de fallo.} Respuesta incorrecta. El acta muestra una nota anterior o incompleta en lugar de la vigente.
 
-\textbf{Origen.} Aporte de Mario Castro. El riesgo se basa en el incidente de GitHub del 21 de octubre de 2018. En el Sistema de Pre-Sustentaciones, una réplica atrasada podría devolver datos anteriores al último registro del tribunal.
+\textbf{Origen.} Aporte de Mario Castro, a partir del incidente de GitHub del 21 de octubre de 2018. En el Sistema de gestión de pre-sustentaciones, la actualización de una nota puede llegar a la réplica después de que el tribunal la guarde en la base principal. Si el acta se genera leyendo esa réplica durante el retraso, podría salir con la nota anterior o sin la nota.
 
-\textbf{Probabilidad preliminar: media.} El riesgo aparece si se genera el acta inmediatamente después de guardar la nota y la réplica todavía no ha recibido ese cambio.
+\textbf{Probabilidad preliminar: media.} La condición de riesgo es que la generación del acta coincida con el retraso de la réplica. Esta probabilidad es preliminar.
 
 \textbf{Impacto: alto.} El tribunal podría firmar un acta sin la nota recién registrada y tendría que corregirla y firmarla de nuevo.
 
@@ -36,7 +36,7 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 
 \textbf{Rama causal de referencia.} Lectura de una réplica desactualizada. Leer la nota desde la base principal para generar el acta evita que el retraso de la réplica se propague al documento.
 
-\textbf{Prueba.} En pruebas, mantener retrasada la réplica, guardar una nota nueva en la base principal y generar el acta de inmediato. Repetir con la base principal indisponible.
+\textbf{Prueba.} Mantener una nota de prueba anterior en la réplica, guardar una nota nueva en la base principal y solicitar el acta antes de que la réplica se actualice. Repetir la solicitud con la base principal indisponible.
 
 \textbf{Resultado esperado.} El acta contiene exactamente la nota vigente. Si no se puede verificar, el sistema bloquea la generación. La entrevista prioriza esta exactitud y no reporta actas firmadas con errores.
 
@@ -47,9 +47,9 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 \textbf{Modelo de fallo.} Caída. El componente compartido deja de prestar servicio tras el cambio.
 
 \textbf{Origen.} Aporte de Dariem Benites. El riesgo se basa en la caída de Facebook, Instagram y WhatsApp del 4 de octubre de 2021.
-\textbf{Causa de la caída.} En Meta, un comando de mantenimiento desconectó la red troncal. En el Sistema de Pre-Sustentaciones, un cambio defectuoso en el punto de entrada o en el inicio de sesión podría interrumpir varias funciones.
+\textbf{Causa de la caída.} En Meta, un comando de mantenimiento desconectó la red troncal. En el Sistema de gestión de pre-sustentaciones, un cambio defectuoso en el punto de entrada o en el inicio de sesión podría interrumpir varias funciones.
 
-\textbf{Factor que prolonga la caída.} En Meta, la interrupción dificultó el acceso remoto para recuperar el servicio. En el Sistema de Pre-Sustentaciones, depender del componente caído para acceder a la administración retrasaría el diagnóstico y la reversión.
+\textbf{Factor que prolonga la caída.} En Meta, la interrupción dificultó el acceso remoto para recuperar el servicio. En el Sistema de gestión de pre-sustentaciones, depender del componente caído para acceder a la administración retrasaría el diagnóstico y la reversión.
 
 \textbf{Probabilidad preliminar: media.} Un cambio de configuración o de despliegue en un componente compartido puede afectar a varios servicios a la vez.
 
@@ -69,7 +69,7 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 
 \textbf{Modelo de fallo.} Respuesta incorrecta. La regla nueva rechaza una revisión que debería permitir para una solicitud en trámite.
 
-\textbf{Origen.} Aporte de Jilmar Cedeño. En el incidente de Fastly de 2021, un cambio de configuración válido activó un defecto latente. En el Sistema de Pre-Sustentaciones, una actualización válida de las reglas de aprobación podría activar un fallo que impida a coordinación revisar solicitudes que ya están en trámite.
+\textbf{Origen.} Aporte de Jilmar Cedeño. En el incidente de Fastly de 2021, un cambio de configuración válido activó un defecto latente. En el Sistema de gestión de pre-sustentaciones, una actualización válida de las reglas de aprobación podría activar un fallo que impida a coordinación revisar solicitudes que ya están en trámite.
 
 \textbf{Probabilidad preliminar: media.} Una regla nueva puede comportarse de forma distinta según el estado de la solicitud. La entrevista confirmó un cambio de tutor sin registro. La frecuencia de fallos por cambios de reglas queda por medir. El cambio de tutor es un hallazgo de la entrevista para las historias de usuario.
 
@@ -89,7 +89,7 @@ La entrevista no aportó frecuencias para recalificar las probabilidades. No se 
 
 \textbf{Modelo de fallo.} Temporización. Bajo saturación, la API no responde dentro del tiempo esperado.
 
-\textbf{Origen.} Aporte de Steven Pozo. El riesgo se basa en la caída de X del 10 de marzo de 2025. El análisis de Bitsight identificó indicios de un ataque DDoS y señaló que algunos servidores de origen estaban expuestos directamente a Internet. En el Sistema de Pre-Sustentaciones, la exposición directa de la API o un volumen excesivo de solicitudes podría saturar el servicio.
+\textbf{Origen.} Aporte de Steven Pozo. El riesgo se basa en la caída de X del 10 de marzo de 2025. El análisis de Bitsight identificó indicios de un ataque DDoS y señaló que algunos servidores de origen estaban expuestos directamente a Internet. En el Sistema de gestión de pre-sustentaciones, la exposición directa de la API o un volumen excesivo de solicitudes podría saturar el servicio.
 
 \textbf{Probabilidad preliminar: media.} La estimación depende de la exposición de la API y de la cantidad de solicitudes que reciba durante los períodos de mayor uso.
 
