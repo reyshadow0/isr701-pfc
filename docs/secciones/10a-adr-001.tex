@@ -1,2 +1,11 @@
-% Resumen de docs/adr/ADR-001-estilo-arquitectura.md. Responsable: Dariem (Arquitecto).
 \subsection{ADR-001: estilo de arquitectura}
+
+\textbf{Decisión.} Microservicios por dominio: Usuarios, Cronograma, Solicitudes y documentos, Evaluación y actas, y Notificaciones. Cada servicio tiene su propia base de datos, la aplicación web entra por un API Gateway que valida el JWT y los servicios se avisan los cambios por una cola de mensajes. Los PDF van en un almacén de archivos aparte. Las notas y el acta quedan en el mismo servicio, para que nunca se genere un acta con una nota que no está registrada (riesgo R02).
+
+\textbf{Por qué.} No distribuimos por rendimiento: el sistema tiene pocas decenas de usuarios a la vez, y en una sola máquina un monolito rinde mejor que su versión en microservicios~\cite{Blinowski2022}. Distribuimos porque las partes del proceso no pueden caer juntas: en la semana de predefensas, si fallan la entrega de documentos o los avisos, el tribunal tiene que seguir calificando (RNF-02). Cada dato pide una política distinta: las notas siempre exactas y los avisos con algo de retraso. Y E2 y E3 exigen microservicios y una base distribuida.
+
+\textbf{Opciones descartadas.} El monolito, porque si se cae se cae todo y no sirve para E2 ni E3. El monolito modular, porque sigue siendo un solo proceso con una sola base.
+
+\textbf{Consecuencias.} Hay más piezas que instalar y vigilar (gateway, cola, almacén de archivos y cinco bases), los servicios necesitan contratos claros entre sí y lo que viaja por la cola llega con algo de retraso. Con una sola instancia, el API Gateway es un punto único de falla (riesgo R03).
+
+El registro completo está en \nolinkurl{docs/adr/ADR-001-estilo-arquitectura.md}.
