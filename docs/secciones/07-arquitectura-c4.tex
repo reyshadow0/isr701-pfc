@@ -1,4 +1,5 @@
 \section{Arquitectura base (modelo C4)}
+\label{sec:arquitectura-c4}
 
 Describimos el sistema con los dos primeros niveles del modelo C4: el diagrama de contexto (nivel~1) y el de contenedores (nivel~2). Los dos se hicieron en draw.io, y los archivos editables y sus exportaciones están en \nolinkurl{docs/diagramas/}. En los diagramas y en este documento el sistema se llama \emph{Sistema de gestión de pre-sustentaciones}.
 
@@ -74,4 +75,4 @@ La figura~\ref{fig:c4-n2} abre la caja del sistema. Los usuarios entran desde el
   \end{tabularx}
 \end{table}
 
-Las bases de datos usan PostgreSQL. Cada servicio tiene la suya, y ningún servicio lee la base de otro: si necesita un dato, se lo pide al servicio dueño o lo recibe por un evento. Los PDF van en MinIO, fuera de las bases. Solicitudes y documentos y Evaluación y actas, marcados con una estrella en la figura, son los dos servicios del esqueleto de esta entrega (sección~13). El tipo y el mecanismo de cada interacción están en la sección~8, y lo que se prioriza con cada dato crítico, en la sección~9.
+Las bases de datos usan PostgreSQL. Cada servicio tiene la suya, y ningún servicio lee la base de otro: si necesita un dato, se lo pide al servicio dueño o lo recibe por un evento. Los PDF van en MinIO, fuera de las bases. Solicitudes y documentos y Evaluación y actas, marcados con una estrella en la figura, son los dos servicios del esqueleto de esta entrega. El tipo y el mecanismo de cada interacción están en la sección~\ref{sec:comunicacion}, y lo que se prioriza con cada dato crítico, en la sección~\ref{sec:cap-pacelc}.

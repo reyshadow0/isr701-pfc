@@ -1,4 +1,5 @@
 \section{Análisis CAP y PACELC}
+\label{sec:cap-pacelc}
 
 El teorema CAP dice que, cuando la red se parte (P), un sistema que guarda un dato en más de un lugar tiene que elegir entre consistencia (C), es decir, que todos lean el último valor, y disponibilidad (A), es decir, que siempre responda. Abadi~\cite{Abadi2012} propuso PACELC para agregar el caso normal: aun sin partición (E, de \emph{else}), hay que elegir entre baja latencia (L) y consistencia (C). En nuestro sistema un dato está en más de un lugar en dos casos: cuando un servicio guarda una copia de un dato de otro, que le llega por eventos, y desde E3, cuando las bases tengan réplicas.
 
@@ -30,4 +31,4 @@ Para decidir usamos lo que dijo la entrevistada: es peor mostrar una nota desact
   \end{tabularx}
 \end{table}
 
-Cinco de los siete datos son PC/EC: con ellos el sistema prefiere dejar de responder por un rato antes que mostrar algo incorrecto. Eso cabe en lo que aceptó la entrevistada: en la semana de predefensas, hasta una hora sin servicio (RNF-02), porque la predefensa sigue y las notas se registran después. Los otros dos son PA/EL: ahí importa más responder rápido y no bloquear a nadie. Poder tratar cada dato de forma distinta es una de las razones para dividir el sistema en servicios (sección~6 y ADR-001).
+Cinco de los siete datos son PC/EC: con ellos el sistema prefiere dejar de responder por un rato antes que mostrar algo incorrecto. Eso cabe en lo que aceptó la entrevistada: en la semana de predefensas, hasta una hora sin servicio (RNF-02), porque la predefensa sigue y las notas se registran después. Los otros dos son PA/EL: ahí importa más responder rápido y no bloquear a nadie. Poder tratar cada dato de forma distinta es una de las razones para dividir el sistema en servicios (sección~\ref{sec:justificacion} y ADR-001).
