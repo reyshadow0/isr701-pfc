@@ -1,1 +1,40 @@
 \section{Análisis CAP y PACELC}
+\label{sec:cap-pacelc}
+
+El teorema CAP dice que, cuando la red se parte (P), un sistema que guarda un dato en más de un lugar tiene que elegir entre consistencia (C), es decir, que todos lean el último valor, y disponibilidad (A), es decir, que siempre responda. Abadi~\cite{Abadi2012} propuso PACELC para agregar el caso normal: aun sin partición (E, de \emph{else}), hay que elegir entre baja latencia (L) y consistencia (C). En nuestro sistema un dato está en más de un lugar en dos casos: cuando un servicio guarda una copia de un dato de otro, que le llega por eventos, y desde E3, cuando las bases tengan réplicas.
+
+Para decidir usamos lo que dijo la entrevistada: es peor mostrar una nota desactualizada que no dejar registrarla por un rato, porque una nota vieja puede terminar en un acta firmada y en el SGA. La tabla~\ref{tab:pacelc} muestra la decisión para cada dato crítico.
+
+\begingroup
+\footnotesize
+\begin{xltabular}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{1.5cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.6cm}@{}}
+    \caption{Qué se prioriza con cada dato crítico.}
+    \label{tab:pacelc} \\
+    \toprule
+    \textbf{Dato} & \textbf{Dueño} & \textbf{PACELC} & \textbf{Qué se prioriza} & \textbf{Qué le pasa al usuario} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{5}{@{}l}{\emph{Tabla~\ref{tab:pacelc} (continuación)}} \\
+    \toprule
+    \textbf{Dato} & \textbf{Dueño} & \textbf{PACELC} & \textbf{Qué se prioriza} & \textbf{Qué le pasa al usuario} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endlastfoot
+    Notas por criterio y nota final & Evaluación y actas & PC/EC & Con partición, no se registra ni se muestra una nota que no se pueda confirmar en la base primaria. Sin partición, se lee siempre de la primaria, aunque tarde un poco más. & El tribunal puede tener que esperar, o anotar en papel y registrar después, como hoy. Nadie ve una nota vieja. \\
+    \addlinespace
+    Acta y sus firmas & Evaluación y actas & PC/EC & El acta se genera solo con las notas confirmadas en la base primaria (riesgo R02). & Si hay una falla, el acta se firma más tarde, pero nunca sale con una nota que falte. \\
+    \addlinespace
+    Porcentaje de URKUND & Solicitudes y documentos & PC/EC & Evaluación se lo pide por gRPC al dueño antes de abrir la rúbrica, en vez de usar una copia. Si Solicitudes no responde, la rúbrica no se abre. & El tribunal espera o califica en papel, pero nunca con un porcentaje equivocado. \\
+    \addlinespace
+    Fecha, sala y tribunal & Cronograma & PC/EC & Solo Cronograma asigna, y su base no deja guardar dos predefensas en la misma sala y hora, ni un docente en dos tribunales a la vez. Con partición no se asigna. & El coordinador no puede programar mientras dure la falla, pero no hay choques de horario. \\
+    \addlinespace
+    Informe en PDF & Solicitudes y documentos & PC/EC & La entrega se confirma solo cuando el archivo quedó guardado en MinIO (riesgo R01). & Si MinIO no responde, la solicitud queda en borrador y el estudiante vuelve a intentar. \\
+    \addlinespace
+    Estado visible, listados y reportes & Solicitudes y Cronograma, con copias en otros servicios & PA/EL & Se muestra el último dato recibido por eventos, aunque tenga unos segundos de atraso. & El estudiante o el coordinador pueden ver un estado o un reporte un poco atrasado. La entrevistada dijo que es aceptable. \\
+    \addlinespace
+    Avisos por correo y en vivo & Notificaciones & PA/EL & Los eventos esperan en la cola y los avisos se guardan en BD Notificaciones hasta enviarse. & Un aviso puede llegar tarde, pero no se pierde. \\
+\end{xltabular}
+\endgroup
+
+Cinco de los siete datos son PC/EC: con ellos el sistema prefiere dejar de responder por un rato antes que mostrar algo incorrecto. Eso cabe en lo que aceptó la entrevistada: en la semana de predefensas, hasta una hora sin servicio (RNF-02), porque la predefensa sigue y las notas se registran después. Los otros dos son PA/EL: ahí importa más responder rápido y no bloquear a nadie. Poder tratar cada dato de forma distinta es una de las razones para dividir el sistema en servicios (sección~\ref{sec:justificacion} y ADR-001).
