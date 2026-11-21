@@ -1,30 +1,27 @@
 # Bitácora del equipo BCCP
 
-## Sesión del miércoles 18 de noviembre de 2026
+## Miércoles 18 de noviembre de 2026
 
-### Quiénes participamos y cómo trabajamos
+Este día trabajamos cada uno desde su casa y nos coordinamos por WhatsApp y GitHub. Estuvimos Dariem Benites, Jilmar Cedeño, Mario Castro y yo, Steven Pozo.
 
-Estuvimos los cuatro: Dariem Benites, Jilmar Cedeño, Mario Castro y Steven Pozo. Como cada uno trabajó desde su casa, la sesión fue por WhatsApp y GitHub.
+Lo primero fue ponernos de acuerdo en qué íbamos a construir: un sistema para gestionar los documentos de las pre-sustentaciones de los trabajos de titulación de la UTEQ. Luego repartimos los roles. Dariem se encargará de la arquitectura, Mario del desarrollo, Jilmar de la calidad y yo de la documentación.
 
-### Qué decidimos
+Después pusimos orden en el repositorio y el tablero del proyecto. Cada uno trabajará en su propia rama y los cambios llegarán a `main` solo mediante pull requests. Además, protegimos la rama principal para que nadie pueda subir algo directo por error. También revisamos las fechas: la entrega E1 vence en el SGA el domingo 22 de noviembre a las 23:59, así que decidimos seguir adelante sin esperar las actividades formativas FORM-TL-02 y FORM-IC-01.
 
-- Elegimos como tema el **Sistema de gestión de documentos de pre-sustentaciones de trabajos de titulación de la UTEQ**.
-- Repartimos los roles: Dariem será el arquitecto, Mario el líder de desarrollo, Jilmar el responsable de calidad y Steven el responsable de documentación.
-- Trabajaremos en el repositorio público `reyshadow0/isr701-pfc`. Cada uno tendrá su propia rama y todo cambio entrará a `main` por pull request. Dejamos `main` protegida.
-- Armamos el tablero en GitHub Projects y asignamos a cada responsable sus issues de E1 y E2.
-- E1 vence el domingo 22 de noviembre de 2026 a las 23:59, según el SGA. No vamos a esperar las actividades formativas FORM-TL-02 y FORM-IC-01.
-- Quedamos en entrevistar a la Ing. Nancy Rodríguez el jueves 19 de noviembre de 2026 a las 15:00. Llevaremos impresos el acta y el consentimiento.
-- Cada uno sacó un riesgo a partir de su caso de FORM-AC-01, y Jilmar juntó los cinco en la sección 11.
-- Dividimos el resumen de los ADR en dos archivos: uno lo hace Dariem y el otro Mario.
+Dejamos lista la entrevista con la Ing. Nancy Rodríguez, programada para el jueves 19 a las 15:00, y quedamos en llevar impresos el acta y el consentimiento. Además, cada uno identificó un riesgo a partir de su caso de FORM-AC-01, y Jilmar reunió los cinco en la sección correspondiente.
 
-### Problemas que surgieron y cómo los resolvimos
+Mientras trabajábamos nos dimos cuenta de que Dariem y Mario podían terminar editando el mismo archivo de los ADR, y eso nos iba a dar conflictos. Para evitarlo, dividieron el contenido en dos archivos. Jilmar, por su parte, dejó por ahora los enlaces de las fuentes de riesgos mientras se añadían las claves bibliográficas. Antes de hacer el merge también corregimos algunos títulos, el nombre de un autor en la bibliografía y el apellido de Dariem en R03.
 
-- Dos de nosotros íbamos a editar el mismo archivo de los ADR, así que separamos el contenido en dos archivos para evitar conflictos.
-- Cabía la posibilidad de subir algo directamente a `main` por error, por lo que configuramos una regla para que todo pase por pull request.
-- Las claves de las citas todavía no estaban en `main`. Jilmar dejará los enlaces temporales hasta que se fusione el pull request de `referencias.bib`.
-- Al revisar `referencias.bib`, vimos que algunos títulos y un autor no coincidían con lo publicado en las páginas originales. Los corregimos antes del merge.
-- El apellido de Dariem estaba mal escrito en R03. Ya lo corregimos antes del merge.
+## Jueves 19 de noviembre de 2026
 
-### Pendiente
+Hoy hicimos la entrevista con la Ing. Nancy Rodríguez para entender mejor cómo funciona el proceso de pre-sustentación y obtener la información que necesitamos para definir los requisitos del sistema. Estuvimos los cuatro: Dariem, Jilmar, Mario y yo.
 
-- Tomarnos la foto de la sesión mañana, jueves 19 de noviembre de 2026, cuando nos reunamos.
+Tuvimos un descuido: durante la conversación nadie tomó notas y tampoco llenamos el acta en el momento. Para arreglarlo, cada uno puso en común lo que recordaba y armamos un resumen, que Mario revisará primero. Después se lo enviaremos a la ingeniera para que corrija cualquier dato, complete su cargo y el lugar de la entrevista, y confirme el contenido con su firma y su autorización de publicación.
+
+### Viernes 20 de noviembre de 2026
+
+A las 21:12 nos reunimos por Zoom. Participamos Dariem Benites, Jilmar Cedeño, Mario Castro y yo, Steven Pozo.
+
+En esta sesión trabajamos en Miro, donde dibujamos un bosquejo de nuestro sistema distribuido. Fue solo un primer borrador para ordenar las ideas, así que todavía no es el diagrama definitivo y lo iremos afinando en las próximas sesiones.
+
+También tomamos una foto en la que se ve el bosquejo, para dejar constancia de cómo quedó en esta primera versión.
