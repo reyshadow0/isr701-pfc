@@ -1,1 +1,44 @@
 \section{Modelo de comunicación entre servicios}
+
+La regla es la misma del ADR-002: REST de la aplicación web al API Gateway y del gateway a cada servicio, gRPC cuando un servicio le pregunta algo a otro, y eventos por una cola de mensajes con AMQP (RabbitMQ). Para elegir entre síncrono y asíncrono usamos un criterio simple:
+
+\begin{itemize}
+  \item \textbf{síncrona}, cuando la respuesta decide el siguiente paso o hay una persona esperando en la pantalla;
+  \item \textbf{asíncrona}, cuando el que envía no necesita esperar y un retraso es aceptable, como dijo la entrevistada para los avisos, el estado visible y los reportes.
+\end{itemize}
+
+La tabla~\ref{tab:comunicacion} recorre cada interacción del diagrama de contenedores (figura~\ref{fig:c4-n2}).
+
+\begin{table}[htbp]
+  \centering
+  \caption{Tipo y mecanismo de cada interacción.}
+  \label{tab:comunicacion}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{1.5cm} >{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}X@{}}
+    \toprule
+    \textbf{Interacción} & \textbf{Tipo} & \textbf{Mecanismo} & \textbf{Por qué} \\
+    \midrule
+    Aplicación web $\rightarrow$API Gateway & Síncrona & HTTP/REST con JSON, sobre HTTPS & Es lo que habla el navegador, y la persona espera la respuesta en la pantalla. Cada petición lleva el JWT. \\
+    \addlinespace
+    API Gateway $\rightarrow$Usuarios, Cronograma, Solicitudes, Evaluación y Notificaciones & Síncrona & HTTP/REST & El gateway valida el JWT y reenvía la misma petición al servicio que corresponde, sin cambiar el formato. \\
+    \addlinespace
+    Evaluación y actas $\rightarrow$Solicitudes y documentos & Síncrona & gRPC & Antes de abrir la rúbrica, Evaluación pregunta si el informe y el reporte de URKUND están, y cuál es el porcentaje. La respuesta decide si se puede calificar, y ese dato tiene que ser exacto (sección~9). El contrato queda fijo en un archivo \texttt{.proto} que comparten los dos servicios. \\
+    \addlinespace
+    Cada servicio $\rightarrow$su base PostgreSQL & Síncrona & JDBC & El servicio necesita el dato para responder. Cada base es solo de su servicio. \\
+    \addlinespace
+    Solicitudes y documentos $\rightarrow$MinIO & Síncrona & API de S3 sobre HTTP & La entrega se confirma solo cuando el PDF quedó guardado (riesgo R01). \\
+    \addlinespace
+    Cronograma publica \texttt{FechaAsignada}; la consumen Solicitudes, Evaluación y Notificaciones & Asíncrona & Cola de mensajes, AMQP & Cronograma no tiene que esperar a los demás. Cada uno guarda la fecha, la sala y el tribunal que necesita, y si alguno está caído, el evento lo espera en la cola. \\
+    \addlinespace
+    Solicitudes publica \texttt{EstadoCambiado}; la consumen Cronograma y Notificaciones & Asíncrona & Cola de mensajes, AMQP & El cambio de estado no se detiene si otro servicio falla. El estado visible puede tardar unos segundos, y eso es aceptable. \\
+    \addlinespace
+    Evaluación publica \texttt{ActaFirmada}; la consume Notificaciones & Asíncrona & Cola de mensajes, AMQP & Firmar el acta no depende de que el aviso salga en ese momento. \\
+    \addlinespace
+    Notificaciones $\rightarrow$aplicación web & Asíncrona & WebSocket con STOMP & El servidor empuja el aviso y la pantalla no tiene que preguntar a cada rato. \\
+    \addlinespace
+    Notificaciones $\rightarrow$servicio de correo & Asíncrona & SMTP & El correo es el canal que ya usan. Si el envío falla, el aviso queda en la base de Notificaciones y se vuelve a intentar. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Así, una falla se queda donde ocurre. Si se cae Notificaciones o el servicio de correo, los eventos esperan en la cola y nadie más se detiene. Si se cae Solicitudes y documentos, no se suben PDF, y Evaluación no abre la rúbrica porque no puede confirmar el informe ni el porcentaje de URKUND. En ese caso, el tribunal califica en papel y registra la nota después, como se hace hoy. La única llamada directa entre servicios es la de Evaluación a Solicitudes, y es la que prueba el esqueleto de esta entrega (sección~13).
