@@ -1,5 +1,96 @@
 \section{Requisitos}
 
+\subsection{Historias de usuario}
+
+Las siguientes historias se derivan del resumen reconstruido de la entrevista
+del 19 de noviembre de 2026. La referencia entre paréntesis identifica el punto
+del resumen del que se obtuvo cada necesidad; su contenido fue confirmado por
+la entrevistada.
+
+\begin{description}
+    \item[HU-01. Registrar solicitud.] Como estudiante, quiero registrar mi
+    solicitud de pre-sustentación para iniciar formalmente el trámite.
+    \textbf{Criterios de aceptación:} al guardar una solicitud válida, el
+    sistema le asigna un identificador, registra fecha y estudiante, y muestra
+    el estado inicial; una solicitud sin estudiante autenticado es rechazada.
+    \textbf{Fuente:} puntos 1 y 3 del resumen.
+
+    \item[HU-02. Entregar informe.] Como estudiante, quiero subir mi informe en
+    PDF para que el director y el tribunal puedan revisarlo.
+    \textbf{Criterios de aceptación:} se acepta un PDF de hasta 20 MB, se
+    registra su fecha y versión, y se rechazan otros formatos o archivos que
+    superen el límite. \textbf{Fuente:} punto 2 del resumen.
+
+    \item[HU-03. Adjuntar reporte de similitud.] Como director, quiero adjuntar
+    el reporte de URKUND al expediente para dejar constancia del porcentaje de
+    similitud antes de la predefensa. \textbf{Criterios de aceptación:} el
+    sistema conserva el PDF y el porcentaje; advierte cuando el valor supera
+    el 20\% y no permite marcar el expediente como listo sin el reporte.
+    \textbf{Fuente:} puntos 2 y 5 del resumen.
+
+    \item[HU-04. Consultar estado.] Como estudiante, quiero consultar el estado
+    de mi solicitud para saber qué actividad está pendiente.
+    \textbf{Criterios de aceptación:} el estudiante solo visualiza sus propias
+    solicitudes, el estado actual y la fecha de la última actualización.
+    \textbf{Fuente:} información adicional sobre el estado visible.
+
+    \item[HU-05. Revisar solicitudes.] Como coordinador de titulación, quiero
+    consultar el listado de solicitudes para organizar las pre-sustentaciones.
+    \textbf{Criterios de aceptación:} el listado muestra estudiante, estado,
+    tutor y documentos entregados, y permite filtrar por periodo y estado.
+    \textbf{Fuente:} puntos 1 y 3 e información adicional sobre listados.
+
+    \item[HU-06. Registrar asignaciones.] Como coordinador de titulación,
+    quiero registrar el tutor y los tres integrantes del tribunal para que cada
+    expediente tenga responsables identificados.
+    \textbf{Criterios de aceptación:} no se puede confirmar una asignación sin
+    presidente y dos miembros; cualquier cambio guarda responsable, fecha,
+    valor anterior y valor nuevo. \textbf{Fuente:} puntos 5 y 6 del resumen.
+
+    \item[HU-07. Consultar expedientes asignados.] Como miembro del tribunal,
+    quiero acceder a los expedientes que me fueron asignados para revisar el
+    informe antes de evaluar.
+    \textbf{Criterios de aceptación:} el docente visualiza únicamente los
+    expedientes de sus tribunales y puede descargar sus versiones vigentes.
+    \textbf{Fuente:} puntos 2 y 5 del resumen.
+
+    \item[HU-08. Registrar evaluación.] Como miembro del tribunal, quiero
+    registrar mi calificación y observaciones para documentar el resultado de
+    la predefensa. \textbf{Criterios de aceptación:} la evaluación queda
+    asociada al docente y al expediente, exige calificación y conserva las
+    observaciones; una modificación posterior queda en la bitácora.
+    \textbf{Fuente:} puntos 4 y 5 del resumen.
+
+    \item[HU-09. Generar acta.] Como coordinador de titulación, quiero generar
+    el acta con las calificaciones vigentes para formalizar el resultado.
+    \textbf{Criterios de aceptación:} el acta incluye estudiante, tribunal,
+    calificaciones y fecha; se genera únicamente cuando están completas las
+    tres evaluaciones y usa la información más reciente.
+    \textbf{Fuente:} puntos 4, 5 y 6 del resumen.
+
+    \item[HU-10. Entregar corrección.] Como estudiante, quiero subir una nueva
+    versión del informe cuando existan observaciones para que el expediente
+    conserve la corrección solicitada.
+    \textbf{Criterios de aceptación:} la nueva versión no elimina la anterior,
+    queda vinculada a las observaciones y respeta el formato PDF y el límite de
+    20 MB. \textbf{Fuente:} punto 2 del resumen.
+
+    \item[HU-11. Recibir avisos.] Como participante del proceso, quiero recibir
+    avisos por correo sobre cambios relevantes para usar un canal que ya es
+    conocido por los usuarios.
+    \textbf{Criterios de aceptación:} el sistema envía un aviso al registrar un
+    cambio de estado o una asignación, identifica la solicitud y no incluye
+    calificaciones ni documentos adjuntos. \textbf{Fuente:} punto 6 e
+    información adicional sobre el uso actual del correo.
+
+    \item[HU-12. Generar reportes.] Como coordinador de titulación, quiero
+    generar reportes del periodo para conocer el avance de las solicitudes.
+    \textbf{Criterios de aceptación:} el reporte permite seleccionar el
+    periodo, incluye cantidad de solicitudes por estado y registra la fecha de
+    generación. \textbf{Fuente:} punto 1 e información adicional sobre
+    reportes.
+\end{description}
+
 \subsection{Requisitos no funcionales}
 
 Las características de calidad corresponden a ISO/IEC 25010:2023~\cite{ISOIEC25010_2023}.
