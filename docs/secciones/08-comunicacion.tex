@@ -10,15 +10,22 @@ La regla es la misma del ADR-002: REST de la aplicación web al API Gateway y de
 
 La tabla~\ref{tab:comunicacion} recorre cada interacción del diagrama de contenedores (figura~\ref{fig:c4-n2}).
 
-\begin{table}[htbp]
-  \centering
-  \caption{Tipo y mecanismo de cada interacción.}
-  \label{tab:comunicacion}
-  \footnotesize
-  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{1.5cm} >{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}X@{}}
+\begingroup
+\footnotesize
+\begin{xltabular}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{1.5cm} >{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}X@{}}
+    \caption{Tipo y mecanismo de cada interacción.}
+    \label{tab:comunicacion} \\
     \toprule
     \textbf{Interacción} & \textbf{Tipo} & \textbf{Mecanismo} & \textbf{Por qué} \\
     \midrule
+    \endfirsthead
+    \multicolumn{4}{@{}l}{\emph{Tabla~\ref{tab:comunicacion} (continuación)}} \\
+    \toprule
+    \textbf{Interacción} & \textbf{Tipo} & \textbf{Mecanismo} & \textbf{Por qué} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endlastfoot
     Aplicación web $\rightarrow$API Gateway & Síncrona & HTTP/REST con JSON, sobre HTTPS & Es lo que habla el navegador, y la persona espera la respuesta en la pantalla. Cada petición lleva el JWT. \\
     \addlinespace
     API Gateway $\rightarrow$Usuarios, Cronograma, Solicitudes, Evaluación y Notificaciones & Síncrona & HTTP/REST & El gateway valida el JWT y reenvía la misma petición al servicio que corresponde, sin cambiar el formato. \\
@@ -38,8 +45,7 @@ La tabla~\ref{tab:comunicacion} recorre cada interacción del diagrama de conten
     Notificaciones $\rightarrow$aplicación web & Asíncrona & WebSocket con STOMP & El servidor empuja el aviso y la pantalla no tiene que preguntar a cada rato. \\
     \addlinespace
     Notificaciones $\rightarrow$servicio de correo & Asíncrona & SMTP & El correo es el canal que ya usan. Si el envío falla, el aviso queda en la base de Notificaciones y se vuelve a intentar. \\
-    \bottomrule
-  \end{tabularx}
-\end{table}
+\end{xltabular}
+\endgroup
 
 Así, una falla se queda donde ocurre. Si se cae Notificaciones o el servicio de correo, los eventos esperan en la cola y nadie más se detiene. Si se cae Solicitudes y documentos, no se suben PDF, y Evaluación no abre la rúbrica porque no puede confirmar el informe ni el porcentaje de URKUND. En ese caso, el tribunal califica en papel y registra la nota después, como se hace hoy. La única llamada directa entre servicios es la de Evaluación a Solicitudes, y es la que prueba el esqueleto de esta entrega.
