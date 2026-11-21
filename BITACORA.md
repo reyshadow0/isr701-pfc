@@ -2,18 +2,18 @@
 
 ## Miércoles 18 de noviembre de 2026
 
-Ese día trabajamos desde nuestras casas y nos comunicamos por WhatsApp y GitHub. Participamos Dariem Benites, Jilmar Cedeño, Mario Castro y Steven Pozo. Acordamos desarrollar un sistema para gestionar los documentos de las pre-sustentaciones de trabajos de titulación de la UTEQ y distribuimos las responsabilidades del equipo: Dariem quedó a cargo de la arquitectura, Mario del desarrollo, Jilmar de la calidad y Steven de la documentación.
+Este día trabajamos cada uno desde su casa y nos coordinamos por WhatsApp y GitHub. Estuvimos Dariem Benites, Jilmar Cedeño, Mario Castro y yo, Steven Pozo.
 
-También organizamos el repositorio y el tablero del proyecto. Cada integrante trabajará en su propia rama y los cambios llegarán a `main` mediante pull requests. Se protegió la rama principal para evitar cambios directos por error. Revisamos que E1 vence en el SGA el domingo 22 de noviembre a las 23:59 y decidimos avanzar sin esperar las actividades formativas FORM-TL-02 y FORM-IC-01.
+Lo primero fue ponernos de acuerdo en qué íbamos a construir: un sistema para gestionar los documentos de las pre-sustentaciones de los trabajos de titulación de la UTEQ. Luego repartimos los roles. Dariem se encargará de la arquitectura, Mario del desarrollo, Jilmar de la calidad y yo de la documentación.
 
-Preparamos la entrevista con la Ing. Nancy Rodríguez para el jueves 19 a las 15:00 y quedamos en llevar impresos el acta y el consentimiento. Cada integrante identificó un riesgo a partir de su caso de FORM-AC-01, y Jilmar reunió los cinco riesgos en la sección correspondiente.
+Después pusimos orden en el repositorio y el tablero del proyecto. Cada uno trabajará en su propia rama y los cambios llegarán a `main` solo mediante pull requests. Además, protegimos la rama principal para que nadie pueda subir algo directo por error. También revisamos las fechas: la entrega E1 vence en el SGA el domingo 22 de noviembre a las 23:59, así que decidimos seguir adelante sin esperar las actividades formativas FORM-TL-02 y FORM-IC-01.
 
-Durante el trabajo vimos que Dariem y Mario podían coincidir en el mismo archivo de los ADR, por lo que dividieron el contenido en dos archivos. Jilmar mantuvo temporalmente los enlaces de las fuentes de riesgos mientras se incorporaban las claves bibliográficas. Antes del merge también corregimos títulos, un autor de la bibliografía y el apellido de Dariem en R03.
+Dejamos lista la entrevista con la Ing. Nancy Rodríguez, programada para el jueves 19 a las 15:00, y quedamos en llevar impresos el acta y el consentimiento. Además, cada uno identificó un riesgo a partir de su caso de FORM-AC-01, y Jilmar reunió los cinco en la sección correspondiente.
+
+Mientras trabajábamos nos dimos cuenta de que Dariem y Mario podían terminar editando el mismo archivo de los ADR, y eso nos iba a dar conflictos. Para evitarlo, dividieron el contenido en dos archivos. Jilmar, por su parte, dejó por ahora los enlaces de las fuentes de riesgos mientras se añadían las claves bibliográficas. Antes de hacer el merge también corregimos algunos títulos, el nombre de un autor en la bibliografía y el apellido de Dariem en R03.
 
 ## Jueves 19 de noviembre de 2026
 
-El equipo realizó la entrevista con la Ing. Nancy Rodríguez para conocer mejor el proceso de pre-sustentación y obtener datos que permitan definir los requisitos del sistema. Participaron Dariem Benites, Jilmar Cedeño, Mario Castro y Steven Pozo.
+Hoy hicimos la entrevista con la Ing. Nancy Rodríguez para entender mejor cómo funciona el proceso de pre-sustentación y obtener la información que necesitamos para definir los requisitos del sistema. Estuvimos los cuatro: Dariem, Jilmar, Mario y yo.
 
-Durante la conversación no se tomaron notas ni se completó el acta en el momento. Para resolverlo, reunimos los datos que cada integrante recuerda y preparamos un resumen para que Mario lo revise primero. Después se enviará a la ingeniera para que corrija cualquier dato, complete su cargo y el lugar de la entrevista, y confirme el contenido con su firma y su autorización de publicación.
-
-No se subirá el resumen ni ninguna evidencia de la entrevista hasta recibir la confirmación y la autorización correspondiente.
+Tuvimos un descuido: durante la conversación nadie tomó notas y tampoco llenamos el acta en el momento. Para arreglarlo, cada uno puso en común lo que recordaba y armamos un resumen, que Mario revisará primero. Después se lo enviaremos a la ingeniera para que corrija cualquier dato, complete su cargo y el lugar de la entrevista, y confirme el contenido con su firma y su autorización de publicación.
