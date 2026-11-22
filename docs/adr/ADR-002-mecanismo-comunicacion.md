@@ -27,9 +27,11 @@ Hay otras dos comunicaciones que este ADR no compara porque las fija otra cosa. 
 
 Elegimos **gRPC** para las llamadas directas entre servicios. Por ahora hay una sola: Evaluación y actas le pregunta a Solicitudes y documentos por una solicitud.
 
-En la corrida oficial de PE-U1 del **[PENDIENTE: fecha de la corrida]**, en **[PENDIENTE: equipo y procesador]**, la latencia de ida y vuelta fue de **[PENDIENTE] ms** con sockets TCP y de **[PENDIENTE] ms** con gRPC (mediana de **[PENDIENTE]** mensajes). **[PENDIENTE: escribir aquí lo que muestran las cifras. Si gRPC salió más lento, decir cuánto y por qué no pesa en este sistema; si salió igual o más rápido, decirlo así.]**
+Las cifras salen de la corrida oficial de PE-U1 del 22 de noviembre de 2026, en una PC con Windows 11, un Intel Core i7-14700 y 63,7 GB de RAM, con CPython 3.13.15, `grpcio` 1.85.3 y `protobuf` 7.36.2. En el caso más parecido a nuestra llamada, un cliente con mensajes de 100 bytes, la mediana de ida y vuelta fue de 0,045 ms con sockets TCP y de 0,291 ms con gRPC; el percentil 95 fue de 0,103 ms y 0,365 ms. Es decir, gRPC fue unas 6,5 veces más lento. Con mensajes de 10 KB la brecha bajó a unas 4,2 veces (0,072 ms contra 0,303 ms). Con tres clientes a la vez, gRPC pasó de 2640 a 5636 mensajes por segundo, más del doble, y sockets subió un 59 %, de 7747 a 12306. Aun así, sockets siguió moviendo más mensajes por segundo.
 
-Lo que más pesó fue el contrato. El sistema tiene pocas decenas de usuarios a la vez (RNF-01), así que unos milisegundos de diferencia no los nota nadie, pero un campo mal leído entre Evaluación y Solicitudes sí: es justo el dato que decide si el tribunal puede calificar. Con gRPC ese contrato queda en `src/proto/solicitudes.proto` y no en la cabeza de cada integrante.
+En latencia pura gana TCP, y no lo vamos a esconder. Pero la diferencia es de unos 0,25 ms por llamada. Evaluación hace una sola consulta antes de abrir la rúbrica, y el sistema tiene a lo mucho 30 usuarios a la vez (RNF-05). Un cuarto de milisegundo no lo nota nadie, y el tráfico real va a estar muy lejos de los miles de mensajes por segundo de la prueba.
+
+Por eso lo que más pesó fue el contrato. Un campo mal leído entre Evaluación y Solicitudes sí se notaría, porque es justo el dato que decide si el tribunal puede calificar. Con gRPC ese contrato queda en `src/proto/solicitudes.proto` y no en la cabeza de cada integrante.
 
 Lo que se sabe de cómo trabaja el equipo también cuenta. En PE-U1 ya armamos un servidor y un cliente gRPC en Python y generamos el código con `grpcio-tools`, así que el esqueleto de E1 reusa ese mismo patrón.
 
