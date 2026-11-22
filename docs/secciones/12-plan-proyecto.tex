@@ -1,1 +1,58 @@
 \section{Plan del proyecto}
+\label{sec:plan}
+
+\subsection{Roles y responsabilidades}
+
+Repartimos los roles en la sesión del 18 de noviembre de 2026. Cada integrante responde por una parte del trabajo, pero todos escribimos código y documento en las cuatro entregas. La tabla~\ref{tab:roles} resume qué le toca a cada uno.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Roles del equipo BCCP.}
+  \label{tab:roles}
+  \small
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}p{2.7cm} >{\raggedright\arraybackslash}X@{}}
+    \toprule
+    \textbf{Integrante} & \textbf{Rol} & \textbf{De qué responde} \\
+    \midrule
+    Benites Pérez Dariem Alberto & Arquitecto & Diagramas C4, ADR-001 y que el código siga la arquitectura acordada. \\
+    \addlinespace
+    Castro Coello Mario Sebastián & Líder de Desarrollo & Código de los servicios, ADR-002, instrucciones de ejecución del README y revisión de los pull requests. \\
+    \addlinespace
+    Cedeño Intriago Jilmar Jesús & Responsable de Calidad & Análisis de riesgos, pruebas del esqueleto en un clon limpio y capturas de evidencia. \\
+    \addlinespace
+    Pozo Castillo Steven Fernando & Responsable de Documentación & Integración del documento en LaTeX, referencias y bitácora del equipo. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Cómo nos organizamos}
+
+El trabajo está en el repositorio \url{https://github.com/reyshadow0/isr701-pfc}. Cada integrante tiene su propia rama (por ejemplo, \texttt{mario/desarrollo}) y todo cambio entra a \texttt{main} por pull request. La rama \texttt{main} está protegida para que nadie suba algo directo por error.
+
+Las tareas están en el tablero \emph{PFC BCCP} de GitHub Projects, enlazado al repositorio en \url{https://github.com/reyshadow0/isr701-pfc/projects}. Cada tarea es un issue con un responsable, la entrega a la que pertenece y un criterio de ``hecho cuando''. Por ejemplo, el issue del servicio Solicitudes se cierra cuando el servicio arranca en local y responde a una consulta. Lo que decidimos en cada sesión queda en \nolinkurl{BITACORA.md}.
+
+\subsection{Cronograma de entregas}
+
+Las cuatro entregas siguen las semanas del encuadre de la asignatura (tabla~\ref{tab:cronograma}). E1 cierra en el SGA el domingo 22 de noviembre de 2026 a las 23:59.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Cronograma de las entregas del PFC.}
+  \label{tab:cronograma}
+  \small
+  \begin{tabularx}{\textwidth}{@{}l c >{\raggedright\arraybackslash}X@{}}
+    \toprule
+    \textbf{Entrega} & \textbf{Semana} & \textbf{Qué se entrega} \\
+    \midrule
+    E1 & 5 & Definición del problema, requisitos, arquitectura base (C4, ADR, CAP y PACELC), riesgos y un esqueleto con dos servicios que se comunican. \\
+    \addlinespace
+    E2 & 6 & Los cinco servicios como microservicios, con su API y en contenedores. \\
+    \addlinespace
+    E3 & 13 & Base de datos distribuida, réplicas y procesamiento. \\
+    \addlinespace
+    E4 & 17 & Sistema final y defensa. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+E2 llega una semana después de E1, así que el esqueleto ya está pensado para crecer: el contrato \texttt{.proto} entre Evaluación y Solicitudes se mantiene, y a los dos servicios se les agregan su base, su API y su contenedor.

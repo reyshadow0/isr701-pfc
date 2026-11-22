@@ -1,0 +1,24 @@
+// Contrato entre Evaluación y actas (cliente) y Solicitudes y documentos (servidor).
+// Lo comparten los dos servicios. Si se cambia, hay que volver a generar el código:
+//   python -m grpc_tools.protoc -I . --python_out=. --grpc_python_out=. src/proto/solicitudes.proto
+
+syntax = "proto3";
+
+package presustentaciones;
+
+service SolicitudesService {
+    // Evaluación pregunta por una solicitud antes de abrir la rúbrica.
+    rpc ConsultarSolicitud (ConsultaSolicitud) returns (DatosSolicitud);
+}
+
+message ConsultaSolicitud {
+    string id_solicitud = 1;
+}
+
+message DatosSolicitud {
+    string id_solicitud = 1;
+    string estado = 2;
+    bool informe_cargado = 3;
+    bool reporte_urkund_cargado = 4;
+    double porcentaje_urkund = 5;
+}

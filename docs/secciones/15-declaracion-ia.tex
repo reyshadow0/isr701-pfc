@@ -1,20 +1,51 @@
 \section{Declaración de uso de inteligencia artificial}
+\label{sec:declaracion-ia}
 
-\begin{table}[H]
-  \centering
-  \caption{Herramientas de inteligencia artificial usadas como apoyo}
-  \label{tab:declaracion-ia}
-  \begin{tabularx}{\textwidth}{@{}lllXX@{}}
-    \toprule
-    \textbf{Integrante} & \textbf{Herramienta} & \textbf{Versión} & \textbf{Para qué se usó} & \textbf{Cómo se verificó lo obtenido} \\
-    \midrule
-    Steven Pozo & OpenAI Codex & GPT-5 & Organización y redacción de borradores del resumen de la entrevista, contexto, historias de usuario y trabajos relacionados; búsqueda y revisión de referencias; apoyo inicial en la bitácora & Contrastó los borradores con los datos entregados por el equipo, mantuvo como pendientes los datos no confirmados, verificó los DOI contra las páginas de las revistas y revisará el contenido con el equipo y la entrevistada antes de usarlo como evidencia \\
-    Jilmar Cedeño & OpenAI Codex & GPT-6.2 ligero &
-    Usé Codex para preparar y ajustar borradores de objetivos, requisitos no
-    funcionales y riesgos, y para comparar las secciones en la revisión del
-    issue \#20. &
-    Contrasté los datos de los requisitos no funcionales con la entrevista y
-    comprobé los hallazgos en las secciones 08 y 09, el riesgo R02 y el ADR-001. \\
-    \bottomrule
-  \end{tabularx}
-\end{table}
+\begin{xltabular}{\textwidth}{@{} >{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{1.7cm} >{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}p{3.8cm} @{}}
+  \caption{Herramientas de inteligencia artificial usadas como apoyo.}
+  \label{tab:declaracion-ia} \\
+  \toprule
+  \textbf{Integrante} & \textbf{Herramienta} & \textbf{Versión} & \textbf{Para qué se usó} & \textbf{Cómo se verificó lo obtenido} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Integrante} & \textbf{Herramienta} & \textbf{Versión} & \textbf{Para qué se usó} & \textbf{Cómo se verificó lo obtenido} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+
+  Steven Pozo & OpenAI Codex & GPT-5 &
+  Organización y redacción de borradores del resumen de la entrevista,
+  contexto, historias de usuario y trabajos relacionados; búsqueda y
+  revisión de referencias; apoyo inicial en la bitácora. &
+  Contrastó los borradores con los datos entregados por el equipo, mantuvo
+  como pendientes los datos no confirmados, verificó los DOI contra las
+  páginas de las revistas y revisará el contenido con el equipo y la
+  entrevistada antes de usarlo como evidencia. \\
+  \addlinespace
+
+  Dariem Benites & Claude Code (Anthropic) & Claude Opus 5.5 &
+  Usé Claude para que me ayude a corregir los borradores del ADR-001 y
+  de las secciones 06, 07, 08, 09 y 10a con la entrevista, los RNF y los
+  riesgos; resumir el artículo de Blinowski et al.; pasar tablas a
+  xltabular y compilar; revisar la coherencia con los RNF y los riesgos, y
+  aplicar pequeñas correcciones a las aclaraciones del \#20. &
+  Comparé los diagramas con mi bosquejo, la entrevista y las correcciones
+  de Mario; revisé cada cifra contra la entrevista y la sección 05;
+  comprobé las referencias con su DOI; compilé sin errores y revisé tablas
+  y figuras en el PDF; y leí cada sección hasta poder explicarla. \\
+  \addlinespace
+
+  Jilmar Cedeño & OpenAI Codex & GPT-6.2 ligero &
+  Usé Codex para preparar y ajustar borradores de objetivos, requisitos no
+  funcionales y riesgos, y para comparar las secciones en la revisión del
+  issue \#20. &
+  Contrasté los datos de los requisitos no funcionales con la entrevista y
+  comprobé los hallazgos en las secciones 08 y 09, el riesgo R02 y el
+  ADR-001. \\
+  \addlinespace
+
+  % Fila de Mario: falta agregarla.
+
+\end{xltabular}

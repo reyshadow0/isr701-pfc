@@ -1,2 +1,12 @@
 % Resumen de docs/adr/ADR-002-mecanismo-comunicacion.md. Responsable: Mario (Líder de Desarrollo).
 \subsection{ADR-002: mecanismo de comunicación principal}
+
+\textbf{Decisión.} gRPC para las llamadas directas entre servicios. Hoy hay una sola: antes de abrir la rúbrica, Evaluación y actas le pregunta a Solicitudes y documentos si el informe y el reporte de URKUND están, y cuál es el porcentaje. El contrato está en \nolinkurl{src/proto/solicitudes.proto} y lo comparten los dos servicios. REST queda para la aplicación web y el API Gateway, y los eventos van por RabbitMQ (sección~\ref{sec:comunicacion}).
+
+\textbf{Por qué.} Comparamos las dos opciones que medimos en PE-U1, sockets TCP y gRPC, en una sola máquina y sin Docker. En la corrida oficial la latencia fue de \textbf{[PENDIENTE]~ms} con TCP y de \textbf{[PENDIENTE]~ms} con gRPC. Con unas decenas de usuarios a la vez esa diferencia no se nota. Lo que sí importa es que el dato que decide si el tribunal califica llegue completo y con el tipo correcto, y con gRPC eso lo revisa el código generado desde el \texttt{.proto}. Con sockets, en cambio, tuvimos que validar a mano cada campo del JSON. Además, el equipo ya había usado gRPC en PE-U1.
+
+\textbf{Opción descartada.} Sockets TCP con mensajes JSON por línea, porque el formato, los tiempos de espera y los errores había que programarlos a mano, y un cambio de campo en un servicio solo se notaba al ejecutar.
+
+\textbf{Consecuencias.} Si Solicitudes no responde en 5~segundos, Evaluación recibe \texttt{UNAVAILABLE} o \texttt{DEADLINE\_EXCEEDED} y no abre la rúbrica, como pide la sección~\ref{sec:cap-pacelc}. A cambio, hay que generar el código cada vez que cambia el \texttt{.proto}, la llamada no se puede probar desde el navegador y, en E1, el canal va sin cifrar porque todo corre en la misma máquina.
+
+El registro completo está en \nolinkurl{docs/adr/ADR-002-mecanismo-comunicacion.md}.
