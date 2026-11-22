@@ -25,3 +25,9 @@ A las 21:12 nos reunimos por Zoom. Participamos Dariem Benites, Jilmar Cedeño, 
 En esta sesión trabajamos en Miro, donde dibujamos un bosquejo de nuestro sistema distribuido. Fue solo un primer borrador para ordenar las ideas, así que todavía no es el diagrama definitivo y lo iremos afinando en las próximas sesiones.
 
 También tomamos una foto en la que se ve el bosquejo, para dejar constancia de cómo quedó en esta primera versión.
+
+### Sábado 21 de noviembre de 2026
+
+Hoy no tuvimos reunión del equipo porque fue feriado, así que cada uno siguió trabajando por su cuenta en sus tareas.
+
+Por mi parte, corregí el formato de la HU-01 y dejé claro que la Ing. Nancy Rodríguez confirmó el resumen de la entrevista en persona. Con esos cambios se fusionó el PR #42. También avancé con el resumen ejecutivo para la entrega final.

@@ -1,1 +1,41 @@
 \section{Resumen ejecutivo}
+
+Este proyecto propone un sistema distribuido para gestionar los documentos y
+las actividades de las pre-sustentaciones de trabajos de titulación de la
+carrera de Software de la Universidad Técnica Estatal de Quevedo. Actualmente,
+parte del proceso se coordina de manera manual y por correo electrónico. Las
+actas se solicitan y entregan por ese medio, las firmas en papel retrasan el
+cierre y cambios importantes, como la sustitución de un tutor, pueden quedar
+sin registro. La entrevista realizada a la Ing. Nancy Rodríguez permitió
+precisar que normalmente participan entre 10 y 12 estudiantes por periodo y
+que la calificación, el acta y el porcentaje de similitud son datos críticos.
+
+La propuesta cubre el registro y seguimiento de solicitudes, la entrega de
+informes en PDF y reportes de URKUND, la asignación de tutores y tribunales, el
+registro de evaluaciones, la consolidación de la nota y la generación del acta.
+Se definieron doce historias de usuario y requisitos no funcionales orientados
+a rendimiento, disponibilidad, seguridad, integridad y facilidad de uso. La
+nota final combina el 40\% del tribunal con el 60\% del docente de Desarrollo
+de Titulación II; por ello, las calificaciones y las actas requieren
+consistencia, mientras que avisos, listados y reportes admiten una actualización
+no inmediata.
+
+La arquitectura se documentó mediante los niveles de contexto y contenedores
+del modelo C4. Los usuarios acceden desde una aplicación web Angular a través
+de un API Gateway. La solución separa cinco servicios Spring Boot: Usuarios,
+Cronograma, Solicitudes y documentos, Evaluación y actas, y Notificaciones.
+Cada servicio administra su propia base PostgreSQL; los documentos se almacenan
+en MinIO y RabbitMQ distribuye los eventos que no necesitan respuesta
+inmediata. Esta separación busca que una falla en notificaciones o cronograma
+no impida registrar evaluaciones durante la semana de predefensas. Los ADR
+justifican el estilo de microservicios y la combinación de comunicación
+síncrona y asíncrona.
+
+El análisis contempla riesgos de interrupción en la carga de documentos,
+lecturas de notas desactualizadas, caída de componentes compartidos, cambios
+defectuosos en reglas y saturación de la API. Las mitigaciones incluyen
+validación de archivos, lectura de la fuente principal para generar actas,
+despliegues graduales, versionado de reglas, acceso administrativo independiente
+y límites de solicitudes. Como resultado de esta primera entrega quedan
+establecidos el problema, los requisitos, la arquitectura base, las decisiones
+técnicas, los riesgos y un esqueleto funcional de los servicios principales.
