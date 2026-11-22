@@ -1,2 +1,36 @@
 \section{Justificación de la arquitectura distribuida}
 \label{sec:justificacion}
+
+Un monolito, es decir, una sola aplicación desplegada en un único servidor, sería la opción más simple. Para saber si basta, revisamos los cuatro criterios de la guía contra nuestros requisitos no funcionales y contra lo que dijo la entrevistada. La tabla~\ref{tab:justificacion} resume el resultado.
+
+\begingroup
+\footnotesize
+\begin{xltabular}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.3cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{1.9cm} >{\raggedright\arraybackslash}X@{}}
+    \caption{¿Basta un monolito en cada criterio?}
+    \label{tab:justificacion} \\
+    \toprule
+    \textbf{Criterio} & \textbf{Qué dicen los requisitos} & \textbf{¿Basta un monolito?} & \textbf{Por qué} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{4}{@{}l}{\emph{Tabla~\ref{tab:justificacion} (continuación)}} \\
+    \toprule
+    \textbf{Criterio} & \textbf{Qué dicen los requisitos} & \textbf{¿Basta un monolito?} & \textbf{Por qué} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endlastfoot
+    Escalabilidad & RNF-01: de 10 a 12 estudiantes por período, con hasta tres PDF de 20~MB cada uno, o sea, 720~MB como máximo. RNF-05: 30 usuarios a la vez. & Sí & Es poca carga, y un solo servidor la atiende. El rendimiento no es lo que nos lleva a distribuir. \\
+    \addlinespace
+    Disponibilidad & RNF-02: 99,5~\% al mes y, en la semana de predefensas, no más de 60 minutos seguidos sin las funciones críticas. Si el sistema se cae, la predefensa sigue y las notas se registran después. & No & En un monolito, una falla al subir un PDF o al enviar correos detiene todo el proceso, incluido el registro de notas. Separados, si se caen Notificaciones, el servicio de correo o Cronograma, el tribunal sigue calificando. \\
+    \addlinespace
+    Independencia de despliegue & Riesgo R03: un cambio defectuoso en un componente compartido puede interrumpir varias funciones a la vez. & No & En un monolito, cualquier cambio obliga a desplegar todo de nuevo. Separados, se puede corregir Notificaciones en plena semana de predefensas sin tocar Evaluación y actas. \\
+    \addlinespace
+    Distribución geográfica & RNF-03: se entra desde computadora y celular. Todos los usuarios son de la misma carrera de la UTEQ. & Sí & Los usuarios entran por el navegador desde donde estén, y eso lo resuelve la aplicación web. No hace falta poner servidores en varios lugares. \\
+\end{xltabular}
+\endgroup
+
+Dos de los cuatro criterios no piden distribuir, y lo decimos tal cual: la carga es baja y los usuarios están en un solo lugar. Lo que sí lo pide es que no todo puede caer junto. En la semana de predefensas, el registro de notas no debería detenerse porque falló el envío de un aviso o el cronograma. Si lo que falla es Solicitudes y documentos, la rúbrica digital se bloquea y el tribunal califica en papel, pero el resto del sistema sigue funcionando y el servicio se recupera por separado (sección~\ref{sec:comunicacion}).
+
+A eso se suma algo que un monolito resuelve peor: no todos los datos se tratan igual. Las notas, el acta, el porcentaje de URKUND y la asignación de fecha, sala y tribunal tienen que estar siempre exactos, mientras que los avisos, el estado visible y los reportes pueden tardar unos segundos (sección~\ref{sec:cap-pacelc}). Con servicios separados, cada uno tiene su propia base y su propia regla para esos datos, y los datos que pueden tardar viajan por la cola de mensajes (sección~\ref{sec:comunicacion}). RNF-06 también se cuida mejor así: el estudiante y el tribunal no entran a ninguna base directamente, sino que todo pasa por el API Gateway, que revisa el rol de cada uno.
+
+Distribuir tiene un costo. Hay que levantar más piezas, que son el gateway, la cola, MinIO y cinco bases, y con una sola instancia el API Gateway es un punto único de falla (riesgo R03). Por eso el sistema se divide en solo cinco servicios, uno por cada parte del proceso, y las réplicas quedan para E3. La comparación con el monolito y con el monolito modular está en el ADR-001.
