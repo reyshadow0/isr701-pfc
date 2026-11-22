@@ -31,3 +31,7 @@ También tomamos una foto en la que se ve el bosquejo, para dejar constancia de 
 Hoy no tuvimos reunión del equipo porque fue feriado, así que cada uno siguió trabajando por su cuenta en sus tareas.
 
 Por mi parte, corregí el formato de la HU-01 y dejé claro que la Ing. Nancy Rodríguez confirmó el resumen de la entrevista en persona. Con esos cambios se fusionó el PR #42. También avancé con el resumen ejecutivo para la entrega final.
+
+### Domingo 22 de noviembre de 2026
+
+A las 11:00 nos reunimos por Zoom los cuatro integrantes: Dariem Benites, Jilmar Cedeño, Mario Castro y yo, Steven Pozo. En esta reunión grabamos el video final del proyecto y logramos terminarlo.
