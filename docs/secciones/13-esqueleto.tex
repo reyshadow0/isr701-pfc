@@ -28,26 +28,25 @@ La prueba sigue solo la sección ``Cómo ejecutar el esqueleto'' del README, en 
   \item se detiene Solicitudes y se ejecuta otra vez Evaluación, que debe mostrar \texttt{UNAVAILABLE} y terminar con código 1.
 \end{enumerate}
 
-Mario hizo la prueba primero en un clon limpio, antes de pasarla a Calidad: el 21 de noviembre de 2026 a las 21:55, en Windows 11. Los cuatro pasos de la lista se cumplieron, incluido el caso de Solicitudes apagado. Después, Jilmar clonó el repositorio en su máquina y siguió el README sin ayuda. \textbf{[PENDIENTE: resultado de la prueba de Jilmar y referencia a sus capturas.]}
+Mario hizo la prueba primero en un clon limpio, antes de pasarla a Calidad: el 21 de noviembre de 2026 a las 21:55, en Windows 11. Los cuatro pasos de la lista se cumplieron, incluido el caso de Solicitudes apagado. Después, el 22 de noviembre de 2026, Jilmar clonó el repositorio en su máquina (DESKTOP-GTVSQ58) y siguió el README sin ayuda. Levantó Solicitudes en el puerto 50193 (figura~\ref{fig:captura-solicitudes}), y Evaluación recibió la respuesta y terminó con código~0 (figura~\ref{fig:captura-evaluacion}). Con Solicitudes detenido, Evaluación mostró \texttt{UNAVAILABLE} y terminó con código~1 (figura~\ref{fig:captura-apagado}). Las tres capturas se tomaron entre las 14:04 y las 14:05, muestran el usuario, el nombre de la máquina y la hora, y están en \nolinkurl{evidencias/capturas/}.
 
-% Cuando Jilmar suba las capturas a evidencias/capturas/, descomentar y ajustar los nombres:
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width=\textwidth]{../evidencias/capturas/01-solicitudes-arranca.png}
-%   \caption{Solicitudes escuchando en el puerto 50051.}
-%   \label{fig:captura-solicitudes}
-% \end{figure}
-%
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width=\textwidth]{../evidencias/capturas/02-evaluacion-consulta.png}
-%   \caption{Evaluación muestra la respuesta de Solicitudes.}
-%   \label{fig:captura-evaluacion}
-% \end{figure}
-%
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width=\textwidth]{../evidencias/capturas/03-solicitudes-apagado.png}
-%   \caption{Evaluación con Solicitudes apagado: UNAVAILABLE.}
-%   \label{fig:captura-apagado}
-% \end{figure}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{../evidencias/capturas/01-solicitudes-activo.png}
+  \caption{Solicitudes escuchando en la máquina de Jilmar.}
+  \label{fig:captura-solicitudes}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{../evidencias/capturas/02-evaluacion-respuesta.png}
+  \caption{Evaluación muestra la respuesta de Solicitudes y termina con código 0.}
+  \label{fig:captura-evaluacion}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{../evidencias/capturas/03-solicitudes-apagado.png}
+  \caption{Con Solicitudes detenido, Evaluación muestra UNAVAILABLE y termina con código 1.}
+  \label{fig:captura-apagado}
+\end{figure}

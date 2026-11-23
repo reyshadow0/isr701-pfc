@@ -135,7 +135,7 @@ sube los archivos generados junto con el `.proto`:
 python -m grpc_tools.protoc -I . --python_out=. --grpc_python_out=. src/proto/solicitudes.proto
 ```
 
-<!-- Agregar aquí el enlace al video de la demostración cuando esté grabado. -->
+[Video de demostración](https://youtu.be/9z9n4sfSKrc)
 
 ## Compilación del documento
 
